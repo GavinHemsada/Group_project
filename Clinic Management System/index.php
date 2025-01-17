@@ -6,6 +6,6 @@
     <title></title>
   </head>
   <body>
-    <?php require_once "../Clinic Management System/admin/admin_staff_Frontend/Admin_login.html"; ?> 
+    <?php require_once "../Clinic Management System/welcome.html"?> 
 </body>
 </html>
