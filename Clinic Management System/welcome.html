@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Eye Care Clinic</title>
+    <link rel="icon"href="../../images/logo.png" type="image/x-icon"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript"> 
+        function preventBack() { 
+            window.history.forward();  
+        } 
+          
+        setTimeout("preventBack()", 0); 
+          
+        window.onunload = function () { null }; 
+    </script> 
+</head>
+<body>
+    <style>
+        .nav-link {
+            color: #777777; 
+            font-size: 1.25rem; 
+            text-decoration: none; 
+        }
+        .nav-link:hover {
+            color:  #007bff;
+        }
+        .home{
+            margin-top: -40px;
+        }
+        .min-vh-80 {
+            min-height: 80vh; 
+        }
+        .min-vh-86 {
+            min-height: 86.4vh; 
+        }
+        </style>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-light fixed-top">
+        <div class="container">
+            <a class="navbar-brand" href="#home"><img src="./images/logo.png" alt="Logo" width="50"></a>
+            <b><a class="navbar-brand ms-2 fs-3" style="color: #004085;" href="#home">Eagle Vision Eye Care</a></b>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#home">Home</a></li>
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#about">About</a></li>
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#service">Services</a></li>
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#pricing">Pricing</a></li>
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#gallery">Gallery</a></li>
+                    <li class="nav-item"><a class="nav-link fs-4" onclick="setActive(this)" href="#contact">Contact</a></li>
+                    <li class="nav-item">
+                        <a href="#login" class="btn btn-primary btn-lg ms-5" id="loginbtn">Login</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Header Section -->
+    <section id="home">
+        <header class="bg-primary text-white text-center py-5" style="background-image: url('./images/gallery/welcome_page.jpg'); background-size: cover; background-position: center;height: 600px;">
+            <div class="position-absolute top-0 start-0 w-100 min-vh-86" style="background-color: rgba(0, 0, 0, 0.5);  z-index: 1;">
+            </div>
+            <div class=" position-relative container d-flex flex-column  justify-content-center align-items-center min-vh-80"style="z-index: 2;">
+                <h1 class="text-light">Eye Care For Your Family</h1>
+                <p class="lead text-light">We Are The Leading Eye Care Clinic</p>
+                <a href="#discover" class="btn btn-primary btn-lg">Discover More</a>
+            </div>
+        </header>
+
+    <!-- Home Section -->
+        <section class="py-0 position-relative home" style="z-index: 2;" >
+            <div class="container">
+                <div class="row text-center g-0">
+                    <div class="col-md-3" >
+                        <div class="p-3" style="background-color: #1100c7;">
+                            <i class="bi bi-hospital fs-1 text-light"></i>
+                            <h5 class="mt-3 text-light">Emergency Cases</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3" style="background-color: #0e00a3;">
+                            <i class="bi bi-laptop fs-1 text-light"></i>
+                            <h5 class="mt-3 text-light">Online Service</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3" style="background-color: #0c0188;">
+                            <i class="bi bi-person-check fs-1 text-light"></i>
+                            <h5 class="mt-3 text-light">Qualified Doctors</h5>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="p-3" style="background-color: #090169;">
+                            <i class="bi bi-clock fs-1 text-light"></i>
+                            <h5 class="mt-3 text-light">24/7 Service</h5>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="py-0 bg-light" id="discover">
+            <div class="container">
+                <div class="row text-center">
+                    <div class="col-md-4 ">
+                        <div class="border border-5 p-3 ">
+                            <img src="./images/doc1.png" alt="Doctor 1" class="img-fluid rounded-circle">
+                            <h5 class="mt-3">Dr.Nalinda Samarakoon</h5>
+                            <p>Specialist</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border border-5 p-3">
+                            <img src="./images/doc2.png" alt="Doctor 2" class="img-fluid rounded-circle">
+                            <h5 class="mt-3">Dr.Nalinda Samarakoon</h5>
+                            <p>Specialist</p>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="border border-5 p-3">
+                            <img src="./images/doc3.png" alt="Doctor 3" class="img-fluid rounded-circle">
+                            <h5 class="mt-3">Dr Sudath Gunasekera</h5>
+                            <p>Consultant</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- About Section -->
+    <section class="py-5" id="about">
+        <div class="container  text-center d-flex justify-content-between">
+               
+            <div class="row">
+                <div class="col-md-4 container my-5">
+                    <div class="card p-4 border border-5">
+                        <div class="d-flex align-items-center mb-3">
+                            <i class="bi bi-clock fs-4 text-primary me-2"></i>
+                            <h5 class="mb-0">Opening Hours</h5>
+                        </div>
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-1">Monday</p>
+                            <p class="mb-1">9:00 - 18:00</p>
+                        </div>
+                        <hr class="dotted-hr">
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-1">Tuesday - Wednesday</p>
+                            <p class="mb-1">10:00 - 18:00</p>
+                        </div>
+                        <hr class="dotted-hr">
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-1">Thursday - Friday</p>
+                            <p class="mb-1">10:00 - 17:00</p>
+                        </div>
+                        <hr class="dotted-hr">
+                        <div class="d-flex justify-content-between">
+                            <p class="mb-4">Saturday</p>
+                            <p class="mb-4">11:00 - 16:00</p>
+                        </div>
+                        
+                        <div class="d-flex align-items-center mb-2">
+                            <i class="bi bi-telephone fs-4 text-primary me-2"></i>
+                            <h5 class="mb-0">Emergency Cases?</h5>
+                        </div>
+                        <p class="mb-4">For Emergency cases just contact us</p>
+                
+                        <a href="#contact" class="btn btn-primary">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-md-8">
+                    <div class="mb-3">
+                        <h2>Welcome to Eye Health</h2>
+                        <p class="lead">Our clinic understands the importance of clear vision and provides top-tier eye care services.</p>
+                    </div>
+                    <div class="row py-3">
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <img src="./images/icons/leaser_i.png" style="width: 25px; height: 25px;">
+                            </div>
+                            <h5>Laser Surgery</h5>
+                            <p>Advanced technology for precise vision correction.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <img src="./images/icons/vision_check_i.png" style="width: 25px; height: 25px;">
+                            </div>
+                            <h5>Vision Check</h5>
+                            <p>Comprehensive vision exams for all ages.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <img src="./images/icons/eye_care_i.png" style="width: 25px; height: 25px;">
+                            </div>
+                            <h5>Eye Care</h5>
+                            <p>Personalized care to maintain your eye health.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <img src="./images/icons/coner_icon.png" style="width: 25px; height: 25px;">
+                            </div>
+                            <h5>Cornea Transplant</h5>
+                            <p>Expert cornea transplant services for optimal vision.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <img src="./images/icons/rental_i.png" style="width: 25px; height: 25px;">
+                            </div>
+                            <h5>Retina Repair</h5>
+                            <p>Specialized services to restore your vision.</p>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="rounded-circle bg-primary d-flex justify-content-center align-items-center" style="width: 50px; height: 50px;">
+                                <i class="bi bi-eye-fill text-white"></i> 
+                            </div>
+                            <h5>Dry Eye Surgery</h5>
+                            <p>Advanced treatments for dry eye conditions.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="service">
+        <section class="py-5">
+            <div class="container text-center">
+                <h2>SERVICES</h2>
+                <p class="text-muted">We offer a range of specialized services</p>
+            </div>
+            <div class="container">
+                <ul class="nav nav-tabs justify-content-center">
+                    <li class="nav-item">
+                        <a class="nav-link active" data-bs-toggle="tab" href="#laser-surgery">
+                            <p>Laser Surgery</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#eye-care">
+                            <p>Eye Care</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#retina-repair">
+                            <p>Retina Repair</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#vision-check">
+                            <p>Vision Check</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#cornea-transplant">
+                            <p>Cornea Transplant</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" data-bs-toggle="tab" href="#Dry_Eye_Surgery">
+                            <p>Dry Eye Surgery</p>
+                        </a>
+                    </li>
+                </ul>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show active" id="laser-surgery">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Laser Surgery</h4>
+                                <p>
+                                    "Laser eye surgery is a breakthrough solution to correct vision problems and reduce or eliminate the need for glasses or contact lenses. Our highly skilled ophthalmologists use cutting-edge laser technology to reshape the cornea, the eye's front surface, with remarkable precision."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Laser_Surgery.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/laser_repaire.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show" id="eye-care">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Eye Care</h4>
+                                <p>
+                                    "Experience the latest breakthrough in vision correction. Our skilled ophthalmologists utilize advanced laser technology to reshape the cornea with precision, reducing or eliminating the need for glasses or contact lenses."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Eye_Care.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/eye_care.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show" id="retina-repair">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Retina Repair</h4>
+                                <p>
+                                    "Retina repair involves advanced procedures to treat conditions like retinal tears, detachment, or macular degeneration. Our expert ophthalmologists use cutting-edge techniques to restore the retina and protect your vision. We ensure precise and effective treatment to preserve your eyesight and improve your quality of life."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Retina_Repair.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/Retina_Repair.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show" id="vision-check">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Vision Check</h4>
+                                <p>
+                                    "A vision check is a comprehensive eye exam that assesses your eyesight and detects any issues early. Our specialists evaluate your vision clarity, eye health, and screen for conditions like nearsightedness or astigmatism. Regular vision checks ensure your eyes stay healthy and your prescription is up to date."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Vision_Check.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/Vision_Check.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show" id="cornea-transplant">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Cornea Transplant</h4>
+                                <p>
+                                    "A cornea transplant replaces damaged or diseased corneal tissue with healthy donor tissue, restoring clear vision. Our skilled surgeons perform this delicate procedure with precision, treating conditions like keratoconus or scarring. A successful cornea transplant can significantly improve vision and enhance your overall quality of life."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Cornea_Transplant.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/Cornea_Transplant.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-content mt-4">
+                    <div class="tab-pane fade show" id="Dry_Eye_Surgery">
+                        <div class="row">
+                            <div class="col-md-6 text-start">
+                                <h4>Dry Eye Surgery</h4>
+                                <p>
+                                    "Dry eye surgery is a medical procedure designed to treat chronic dry eye syndrome, a condition caused by insufficient tear production or poor tear quality. The surgery aims to alleviate symptoms such as irritation, burning, and vision problems. Techniques may include punctal plugs, thermal pulsation, or intense pulsed light therapy to improve tear retention and reduce inflammation, enhancing eye comfort."
+                                </p>
+                                <ul class="list-unstyled">
+                                    <li><i class="bi bi-check-circle"></i> General Checkup</li>
+                                    <li><i class="bi bi-check-circle"></i> Emergency cases</li>
+                                    <li><i class="bi bi-check-circle"></i> Personalized plan</li>
+                                    <li><i class="bi bi-check-circle"></i> Eye Exam</li>
+                                    <li><i class="bi bi-check-circle"></i> Free Consultation</li>
+                                    <li><i class="bi bi-check-circle"></i> 24/7 Service</li>
+                                </ul>
+                                <button type="button" class="btn btn-primary" onclick="loadSection('../Clinic Management System/Services/Dry_Eye_Surgery.html')">View More</button>
+                            </div>
+                            <div class="col-md-6">
+                                <img src="./images/gallery/Dry_Eye_Surgery.jpg" width="550px" class="img-fluid rounded" alt="Doctor Image">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="bg-primary text-white py-5">
+            <div class="container text-center">
+                <div class="row">
+                    <div class="col-md-3">
+                        <h2>350</h2>
+                        <p>Happy Patients</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>30+</h2>
+                        <p>Doctors & Staff</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>200+</h2>
+                        <p>Online Appointments</p>
+                    </div>
+                    <div class="col-md-3">
+                        <h2>3+</h2>
+                        <p>Years Experience</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+    <!-- Modal content -->
+    <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-xl">
+          <div class="modal-content" id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Pricing Section -->
+    <section class="py-5" id="pricing">
+        <div class="container text-center">
+            <h2>PRICING PLAN</h2>
+            <p class="text-muted">Explore transparent pricing for all our services.</p>
+            <hr class="w-25 mx-auto">
+        </div>
+
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border border-2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Basic Plan</h5>
+                            <p class="text-muted">Choose your plan now</p>
+                            <h2 class="text-primary">$100</h2>
+                            <ul class="list-unstyled">
+                                <li>Comprehensive Eye Exam</li>
+                                <li>General Checkup</li>
+                                <li>vision checks</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3" id="check_login5">Choose Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border border-2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Standard Plan</h5>
+                            <p class="text-muted">Choose your plan now</p>
+                            <h2 class="text-primary">$500</h2>
+                            <ul class="list-unstyled">
+                                <li>Comprehensive Dry Eye Assessment</li>
+                                <li>Patient Consultation</li>
+                                <li>Personalized treatment plan</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3" id="check_login6">Choose Plan</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <div class="card h-100 border border-2">
+                        <div class="card-body text-center">
+                            <h5 class="card-title">Premium Plan</h5>
+                            <p class="text-muted">Choose your plan now</p>
+                            <h2 class="text-primary">$2000</h2>
+                            <ul class="list-unstyled">
+                                <li>Preoperative Consultation</li>
+                                <li>Surgical Procedure</li>
+                                <li>Postoperative Care</li>
+                                <li>24/7 Support</li>
+                            </ul>
+                            <a href="#" class="btn btn-primary mt-3" id="check_login7">Choose Plan</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Gallery Section -->
+    <section class="container my-5" id="gallery">
+        <div class="text-center mb-4">
+            <h2 class="fw-bold">GALLERY</h2>
+            <p class="mb-1">Witness the power of clear vision and the bright future we create together.</p>
+        </div>
+
+       <!-- Filter Buttons -->
+        <div class="container">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#all">
+                        <p>All</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#leaser">
+                        <p>Laser</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#vision">
+                        <p>Vision</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#eyeCare">
+                        <p>Eye Care</p>
+                    </a>
+                </li>
+            </ul>
+
+            <!-- Gallery -->
+            <div class="tab-content mt-4">
+                <!-- All -->
+                <div class="tab-pane fade show active" id="all">
+                    <div class="row g-3">
+                        <!-- Row 1 -->
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/laser_repaire.jpg" width="306px" height="458px" alt="Image 1">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_1.jpg" class="img-fluid" alt="Image 2">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_2.jpg" class="img-fluid"  alt="Image 3">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_3.jpg" class="img-fluid" alt="Image 4">
+                        </div>
+
+                        <!-- Row 2 -->
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/eye_care.jpg" class="img-fluid" alt="Image 5">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_1.jpg" class="img-fluid" alt="Image 6">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_2.jpg" class="img-fluid" alt="Image 7">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_3.jpg" class="img-fluid" alt="Image 8">
+                        </div>
+
+                        <!-- Row 3 -->
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check.jpg" class="img-fluid" alt="Image 9">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check_1.jpg" class="img-fluid" alt="Image 10">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check_2.jpg" class="img-fluid" alt="Image 11">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="images/gallery/Vision_check_3.jpg" width="306px" height="204px" alt="Image 12">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Laser -->
+                <div class="tab-pane fade" id="leaser">
+                    <div class="row g-3">
+                        <!-- Row 1 -->
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/laser_repaire.jpg" width="306px" height="340px" alt="Image 1">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_1.jpg" width="306px" height="340px" alt="Image 2">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_2.jpg" width="306px" height="340px" alt="Image 3">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Laser_Surgery_3.jpg" width="306px" height="340px" alt="Image 4">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Vision -->
+                <div class="tab-pane fade" id="vision">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check.jpg" class="img-fluid" alt="Image 9">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check_1.jpg" class="img-fluid" alt="Image 10">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Vision_Check_2.jpg" class="img-fluid" alt="Image 11">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="images/gallery/Vision_check_3.jpg" width="306px" height="204px" alt="Image 12">
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Eye Care -->
+                <div class="tab-pane fade" id="eyeCare">
+                    <div class="row g-3">
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/eye_care.jpg" width="306px" height="340px" alt="Image 5">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_1.jpg" width="306px" height="340px" alt="Image 6">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_2.jpg" width="306px" height="340px" alt="Image 7">
+                        </div>
+                        <div class="col-6 col-md-3">
+                            <img src="./images/gallery/Eye_Care_3.jpg" width="306px" height="340px" alt="Image 8">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <footer class="bg-dark text-light py-5" id="contact">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3 mb-4">
+                    <h5 class="fw-bold">Eye Health</h5>
+                    <p>Your vision, our priority. Welcome to Eye Health, where eye care meets excellence.</p>
+                    <button class="btn btn-outline-light mb-3" onclick="document.getElementById('home').scrollIntoView({ behavior: 'smooth' });">Read More</button>
+                    <div>
+                        <a href="#" class="text-light me-3"><i class="bi bi-facebook"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-twitter"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-skype"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-youtube"></i></a>
+                        <a href="#" class="text-light me-3"><i class="bi bi-instagram"></i></a>
+                    </div>
+                </div>
+
+                <div class="col-md-3 ms-auto mb-4">
+                    <h5 class="fw-bold">Latest Services</h5>
+                    <p class="mb-1">Vision Check - eye exam that assesses your eyesight and detects any issues early.</p>
+                    <p class="mb-1">Laser Surgery - solution to correct vision. </p>
+                    <p class="mb-1">Retina Repair - advanced procedures to treat retinal.</p>
+                </div>
+                <div class="col-md-3 ms-auto mb-4">
+                    <h5 class="fw-bold">Opening Hours</h5>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Monday:</p>
+                        <p class="mb-1">9:00 - 18:00</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Tues - Wednes:</p>
+                        <p class="mb-1">10:00 - 18:00</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Thurs - Fri</p>
+                        <p class="mb-1">10:00 - 17:00</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Saturday</p>
+                        <p class="mb-1">11:00 - 16:00</p>
+                    </div>
+                    <div class="d-flex justify-content-between">
+                        <p class="mb-1">Sunday:</p>
+                        <p class="mb-1"><span class="badge bg-primary">Closed</span></p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-between align-items-center border-top border-secondary pt-3 mt-4">
+                <div>
+                    <p class="mb-0">Phone: 011-343-5553</p>
+                </div>
+                <div>
+                    <p class="mb-0">Address: 55/7 galle road , colombo 3</p>
+                </div>
+                <div>
+                    <p class="mb-0">Email: eageleyecare@gmail.com</p>
+                </div>
+            </div>
+        </div> 
+    </footer>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            function setActive(link) {
+                document.querySelectorAll('.nav-link').forEach(function(el) {
+                    el.classList.remove('active');
+                });
+                link.classList.add('active');
+            }
+        })
+
+        function handelclicks() {
+                fetch('../Clinic Management System/welcome.php', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/x-www-form-urlencoded'
+                        }
+                    })
+                    .then(response => {
+                            if (!response.ok) {
+                                throw new Error('Network response was not ok ' + response.statusText);
+                            }
+                            return response.text(); 
+                    })
+                    .then(text => {
+                        console.log('Raw response text:', text);
+                        try {
+                            const data = JSON.parse(text);
+                            if (data.status == 'faile') {
+                                window.location.href = "../Clinic Management System/User/user_login.html";
+                            }
+                        } catch (e) {
+                                console.error('Failed to parse JSON:', e);
+                        }
+                    })
+                    .catch(error => console.error('Error:', error));
+            }
+
+            function loadSection(file) {
+                var xhr = new XMLHttpRequest();
+                    xhr.open('GET', file, true);
+                    xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('modal-content').innerHTML = xhr.responseText;
+                        var modal = new bootstrap.Modal(document.getElementById('myModal'));
+                        modal.show();
+                    }
+                };
+                xhr.send();
+            }
+
+            document.getElementById('check_login5').addEventListener('click' ,function(){handelclicks()})
+            document.getElementById('check_login6').addEventListener('click' ,function(){handelclicks()})
+            document.getElementById('check_login7').addEventListener('click' ,function(){handelclicks()})
+
+            let userType = "patient";
+            localStorage.setItem('userType', userType);
+            document.getElementById('loginbtn').addEventListener('click',function(){
+                Swal.fire({
+                    title: "I am a ",
+                    showDenyButton: true,
+                    confirmButtonText: "Patient",
+                    denyButtonText: "Doctor",
+                    allowEscapeKey: false,
+                    allowOutsideClick: false
+                    }).then((result) => {
+                        userType = result.isConfirmed ? "patient" :"doctor";
+                        localStorage.setItem('userType', userType);
+                        window.location.href = "../Clinic Management System/User/user_login.html";
+                });
+            })
+    </script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
