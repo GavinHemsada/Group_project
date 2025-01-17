@@ -1,0 +1,545 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.5/font/bootstrap-icons.min.css" rel="stylesheet">
+
+    <style>
+        .content-section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+            color: blue;
+        }
+        .text-dark{
+            color: black;
+        }
+    </style>
+    <script type="text/javascript"> 
+        function preventBack() { 
+            window.history.forward();  
+        } 
+          
+        setTimeout("preventBack()", 0); 
+          
+        window.onunload = function () { null }; 
+    </script> 
+</head>
+<body>
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-12 col-md-2 d-none d-md-block vh-100 sidebar fixed-top">
+                <div class="text-center mt-3">
+                    <img src="../../../../Clinic Management System/images/logo.png" class="rounded-circle mt-3" width="70" height="70" alt="Profile Picture">
+                    <h4 class="mt-2" style="color: rgb(0, 0, 137);">Eagel Vision Eye Care</h4>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body border border-2 text-center">
+                        <div class="position-relative d-inline-block">
+                            <img src="" id="pro_image" class="rounded-circle mt-3" width="100" height="100" alt="Profile Picture" style="border: 1px solid black;">
+                            <label id="upload" class="position-absolute" style="top: 85px; left: 65px;cursor: pointer;display: none;">
+                                <input type="file" name="fileImg" id="fileImg" accept=".jpg, .png" class="d-none">
+                                <i class="bi bi-camera-fill fs-3 "></i>
+                            </label>
+                        </div>
+                        <div class="mt-2" id="user_name"></div>
+                    </div>
+                </div>
+                <div class="card mt-3">
+                    <div class="card-body border border-2 position-sticky pt-3">
+                        <ul class="nav flex-column">
+                            <li class="nav-item" onclick="document.getElementById('upload').style.display = 'none';">
+                                <a class="nav-link active fs-5" data-file="../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/dashboard_page.html" href="#">
+                                    <i class="bi bi-house-door"></i>
+                                    Dashboard
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link text-dark fs-5" data-file="../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/profile.html" href="#">
+                                    <div class="icon-badge-container" id="profile">
+                                        <i class="bi bi-person"></i>
+                                            Profile
+                                    </div>
+                                </a>
+                            </li>
+                            <li class="nav-item " onclick="document.getElementById('upload').style.display = 'none';">
+                                <a class="nav-link text-dark fs-5" data-file="../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/appointment.html" href="#">
+                                    <i class="bi bi-calendar-check"></i>
+                                    Appointment
+                                </a>
+                            </li>
+                            <li class="nav-item " onclick="document.getElementById('upload').style.display = 'none';">
+                                <a class="nav-link text-dark fs-5" data-file="../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/history.html" href="#">
+                                    <i class="bi bi-clock-history"></i>
+                                    History
+                                </a>
+                            </li>
+                            <li class="nav-item mt-4">
+                                <a class="nav-link text-dark fs-5" href="#" id="logout_Btn">
+                                    <i class="bi bi-box-arrow-right"></i>
+                                    Logout
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </nav>  
+            <main class="col-12 col-md-10 ms-sm-auto col-lg-10 px-md-4">
+                <div id="content-section">
+                    
+                </div>
+            </main>          
+        </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            loadSection('../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/dashboard_page.html');
+
+            var navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    var file = this.getAttribute('data-file');
+                    loadSection(file);
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        link.classList.add('text-dark');
+                    });
+                    this.classList.add('active');
+                    link.classList.remove('text-dark');
+                });
+            });
+    
+            function loadSection(file) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', file, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('content-section').innerHTML = xhr.responseText;   
+                        if(file.includes('dashboard_page.html')){
+                           dashboard();
+                        }  
+                        if(file.includes('profile.html')){
+                            profiledetails();
+                            profile_edit();
+                            profile_details_edit();
+                        } 
+                        if(file.includes('appointment.html')){
+                            appointment();
+                        }
+                        if(file.includes('history.html')){
+                            app_pay_history();
+                        }
+                    }
+                };
+                xhr.send();
+            }
+            fetchdetails();
+        });
+
+
+        // --------------------------------------Dashboard-------------------------------------------------------------
+        function fetchdetails() {
+            return fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_profile.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    if (data.states != 'error') {
+                        if (data.Profile_photo != null) {
+                            document.getElementById("pro_image").src = '../../../images/Profile_img/Doctor/' + data.Profile_photo;
+                        } else {
+                            document.getElementById("pro_image").src = '../../../images/empty_profile_img.png';
+                        }
+                        if (data.states == 'type_error') {
+                            alert('Please upload .jpg and .png type files.');
+                        }
+                        document.getElementById("user_name").textContent = data.Fisrt_name + " " + data.Last_name;
+                    } else {
+                        document.getElementById("pro_image").src = '../../../images/empty_profile_img.png';
+                        document.getElementById("user_name").textContent = data.Fisrt_name + " " + data.Last_name;
+                    }
+                    return data;
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+
+        document.getElementById('profile').addEventListener('click',function(){
+            document.getElementById('upload').style.display = 'block';
+        });
+        
+        document.getElementById("fileImg").addEventListener('change', function() {
+            var file = document.getElementById("fileImg").files[0];
+            var formData = new FormData();
+            if (file) {
+            document.getElementById("pro_image").src = URL.createObjectURL(file);
+            formData.append('upload_img', file);
+            }
+            fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_profile.php', {
+            method: 'POST',
+            body: formData,
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    if (data.status === 'success') {
+                        alert('succesfull added');
+                    }else{
+                    alert('cant added');
+                    }
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+
+        function dashboard() {
+            return fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_dashboard.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    if (data[0][0].upcount && data[1][0].comcount) {
+                        document.getElementById('up_comming').innerText = data[0][0].upcount; 
+                        document.getElementById('complete_app').innerText = data[1][0].comcount;
+
+                        const totalAppointments = data[2].map(monthData => parseInt(monthData.total_appointments));
+                        const totalPayments = data[3].map(monthData => parseFloat(monthData.total_cost));
+                        const ctx2 = document.getElementById('appointmentChart').getContext('2d');
+                        const appointmentChart = new Chart(ctx2, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                datasets: [{
+                                    label: 'Appointments',
+                                    data: totalAppointments, 
+                                    borderColor: 'rgb(54, 162, 235)',
+                                    fill: false
+                                }]
+                            }
+                        });
+
+                        const ctx1 = document.getElementById('incomeChart').getContext('2d');
+                        const incomeChart = new Chart(ctx1, {
+                            type: 'line',
+                            data: {
+                                labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+                                datasets: [{
+                                    label: 'Income',
+                                    data: totalPayments,
+                                    borderColor: 'rgb(75, 192, 192)',
+                                    fill: false
+                                }]
+                            }
+                        });
+                    }
+
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        // ---------------------------------------------Profile------------------------------------------------------------------
+
+        function profiledetails(){
+            fetchdetails()
+                .then(data => {
+                    if (data) {
+                        console.log(data);
+                        document.getElementById('firstName').value = data.Fisrt_name;
+                        document.getElementById('lastName').value = data.Last_name;
+                        document.getElementById('email').value = data.email;
+                        document.getElementById('gender').value = data.Gender;
+                        document.getElementById('age').value = data.Age;
+                        document.getElementById('role').value = data.Role;
+                        document.getElementById('phone').value = data.Phone_Number;
+                        document.getElementById('snumber').value = data.Street_Number;
+                        document.getElementById('sname').value = data.Street_Name;
+                        document.getElementById('city').value = data.City;
+                        document.getElementById('hospital').value = data.Hospital_Name;
+                        document.getElementById('hospital_id').value = data.Hospital_ID;
+                    } else {
+                        console.error('No data returned');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error in profiledetails:', error);
+                });
+        }
+
+        function profile_edit(){
+            document.querySelectorAll('.edit_btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const inputField = this.previousElementSibling;
+                    if (inputField && inputField.disabled) {
+                        inputField.removeAttribute('disabled');
+                        inputField.focus();
+                        document.querySelector('.save_btn').removeAttribute('hidden');
+                    }
+                });
+            });
+        }
+
+        function profile_details_edit(){
+            document.querySelector('.save_btn').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname = document.getElementById('firstName').value;
+                var lname = document.getElementById('lastName').value;
+                var email = document.getElementById('email').value;
+                var gender = document.getElementById('gender').value;
+                var phone = document.getElementById('phone').value;
+                var snum = document.getElementById('snumber').value;
+                var sname = document.getElementById('sname').value;
+                var city = document.getElementById('city').value;
+                var role = document.getElementById('role').value;
+                var hospital = document.getElementById('hospital').value;
+                var hospitalid = document.getElementById('hospital_id').value;
+                var age = document.getElementById('age').value;
+                fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_profile.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'fname' : fname,
+                        'lname' : lname,
+                        'email': email,
+                        'gender': gender,
+                        'age' : age,
+                        'phone' : phone,
+                        'snumber' : snum,
+                        'sname' : sname,
+                        'city' : city,
+                        'role':role,
+                        'hospital' : hospital,
+                        'hospitalid' :hospitalid
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.status === 'details_add') {
+                            alert('data update');
+                            loadSection('../../../../Clinic Management System/User/Doctor/doctor_frountend/dashboard Components/profile.html');
+                            document.querySelector('.save_btn').setAttribute('hidden', true);
+                            document.querySelectorAll('.edit_btn').forEach(button => {
+                                button.setAttribute('disabled', true);
+                            });
+                        }else if(data.status === 'detals_notadd'){
+                            alert("data not update");
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        // -----------------------------------------Appointment----------------------------------------------------------------------
+
+        function appointment() {
+            fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_appointment.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    console.log(data);
+                    if (data.states !== 'error') {
+                        const appointmentTbl = document.getElementById('appointment_tbl');
+                        appointmentTbl.innerHTML = '';
+                        data[0].forEach(edit => {
+                            var row = document.createElement('tr');
+
+                            var pnameCell = document.createElement('td');
+                            pnameCell.textContent = edit.Fisrt_name+ " " + edit.Last_name;
+
+                            var typeCell = document.createElement('td');
+                            typeCell.textContent = edit.Treatment_type;
+
+                            var dateCell = document.createElement('td');
+                            dateCell.textContent = edit.Date;
+
+                            var ageCell = document.createElement('td');
+                            ageCell.textContent = edit.Age;
+
+                            var priceCell = document.createElement('td');
+                            priceCell.textContent = edit.Price;
+
+                            row.appendChild(pnameCell);
+                            row.appendChild(typeCell);
+                            row.appendChild(dateCell);
+                            row.appendChild(ageCell);
+                            row.appendChild(priceCell);
+
+                            appointmentTbl.appendChild(row);
+                        });
+                    }
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+
+        // -----------------------------------------History--------------------------------------------------------------------------
+
+        function app_pay_history() {
+            fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_appointment.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    console.log(data);
+                    if (data.states !== 'error') {
+                        const payment_his = document.getElementById('payment_history_body');
+                        const appoint_his = document.getElementById('appointment_history_body');
+                        appoint_his.innerHTML = '';
+                        payment_his.innerHTML = ''; 
+                        data[1].forEach(edit => {
+                            var row = document.createElement('tr');
+
+                            var typeCell = document.createElement('td');
+                            typeCell.textContent = edit.Treatment_type;
+
+                            var dateCell = document.createElement('td');
+                            dateCell.textContent = edit.Date;
+
+                            var priceCell = document.createElement('td');
+                            priceCell.textContent = edit.Price;
+
+                            row.appendChild(typeCell);
+                            row.appendChild(dateCell);
+                            row.appendChild(priceCell);
+
+                            payment_his.appendChild(row); 
+                        });
+                        data[1].forEach(app_his => {
+                            var row = document.createElement('tr');
+
+                            var fnameCell = document.createElement('td');
+                            fnameCell.textContent = app_his.Fisrt_name;
+
+                            var lnameCell = document.createElement('td');
+                            lnameCell.textContent = app_his.Last_name;
+
+                            var typeCell = document.createElement('td');
+                            typeCell.textContent = app_his.Treatment_type;
+
+                            var docCell = document.createElement('td');
+                            docCell.textContent = app_his.Doctor_Name;
+
+                            var dateCell = document.createElement('td');
+                            dateCell.textContent = app_his.Date;
+
+                            row.appendChild(fnameCell);
+                            row.appendChild(lnameCell);
+                            row.appendChild(typeCell);
+                            row.appendChild(docCell);
+                            row.appendChild(dateCell);
+
+                            appoint_his.appendChild(row); 
+                        });
+                    }
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('There was a problem with the fetch operation:', error);
+            });
+        }
+
+        // -----------------------------------------Logout---------------------------------------------------------------------------
+
+        document.getElementById('logout_Btn').addEventListener('click', function() {
+            localStorage.clear();
+            sessionStorage.clear();
+            fetch('../../../../Clinic Management System/User/Doctor/doctor_backend/doctor_logout.php', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Logout request failed with status:', response.status);
+                    throw new Error('Logout failed');
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Logout response:', text);
+                window.location.href = '/Clinic Management System/welcome.html';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+    </script> 
+</body>
+</html>

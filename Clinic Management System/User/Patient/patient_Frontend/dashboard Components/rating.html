@@ -1,0 +1,35 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Rate Our Service</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="ratingForm">
+        <div class="row mb-3">
+            <label for="service_rating" class="col-sm-2 col-form-label text-start">Rating</label>
+            <div class="col-sm-8">
+                <div class="d-flex align-items-center">
+                    <i id="star1" class="fa-regular fa-star star fs-2 me-2" data-value="1"></i>
+                    <i id="star2" class="fa-regular fa-star star fs-2 me-2" data-value="2"></i>
+                    <i id="star3" class="fa-regular fa-star star fs-2 me-2" data-value="3"></i>
+                    <i id="star4" class="fa-regular fa-star star fs-2 me-2" data-value="4"></i>
+                    <i id="star5" class="fa-regular fa-star star fs-2 me-2" data-value="5"></i>
+                </div>
+                <input type="hidden" id="service_rating" name="service_rating" required>                
+            </div>
+            
+        </div>
+
+        <div class="row mb-3">
+            <label for="user_feedback" class="col-sm-2 col-form-label text-start">Feedback</label>
+            <div class="col-sm-8">
+                <textarea class="form-control" id="user_feedback" rows="4" placeholder="Your feedback here..." required></textarea>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-10 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success" id="submitRating">SUBMIT</button>
+            </div>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,136 @@
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Appointment</h1>
+</div>
+<div class="container card">
+  <form>
+  <div class="container mt-4">
+    <ul class="nav nav-tabs justify-content-center">
+        <li class="nav-item">
+            <a class="nav-link active" data-bs-toggle="tab" href="#new_appointmrnt">
+                <p>New Appointment</p>
+            </a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" href="#cansel_edit">
+                <p>Cansel or Edit Appointment</p>
+            </a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" data-bs-toggle="tab" href="#Appointment_hstory">
+              <p>Appointment History</p>
+          </a>
+      </li>
+    </ul>
+
+    <div class="tab-content mt-4">
+        <div class="tab-pane fade show active" id="new_appointmrnt">
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">Treatment type</label>
+              <div class="col-sm-8 d-flex">
+                <select class="form-select" id="treatment_type" required>
+                    <option value="">-----------------------------------Select Treatment Type--------------------------------</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">First name</label>
+                <div class="col-sm-8 d-flex">
+                  <input type="text" class="form-control" id="app_fname" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">Last Name</label>
+                <div class="col-sm-8 d-flex">
+                  <input type="text" class="form-control" id="app_lname" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">Age</label>
+                <div class="col-sm-8 d-flex">
+                  <input type="number" min="0" class="form-control" id="app_age" required>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="appointment_date" class="col-sm-2 col-form-label text-start">Date</label>
+              <div class="col-sm-8 d-flex">
+                  <input type="date" class="form-control" id="appointment_date" required>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">Doctor Name</label>
+              <div class="col-sm-8 d-flex">
+                <select class="form-select" id="doctor_name" required>
+                    <option value="">---------------------------------------Select Doctor-------------------------------------</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row mb-3">
+              <label for="address" class="col-sm-2 col-form-label text-start">Price</label>
+                <div class="col-sm-8 d-flex">
+                  <input type="text" class="form-control" id="price" disabled>
+                </div>
+            </div>
+            <div class="row mb-3">
+              <div class="col-sm-10 d-flex justify-content-end">
+                <button type="submit" class="btn btn-primary submit_btn ms-3" style="display: none;" id="submit_btn">Pay and Apply</button>
+                <button type="submit" class="btn btn-success submit_btn ms-3" style="display: none;" id="apply_btn">Apply</button>
+              </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="tab-content mt-4">
+      <div class="tab-pane fade show" id="cansel_edit">
+          <div class="row">
+              <div class="col-md-12 text-start">
+                <table class="table table-bordered">
+                  <thead>
+                      <tr>
+                          <th>First Name</th>
+                          <th>Last Name</th>
+                          <th>Treatment Type</th>
+                          <th>Doctor Name</th>
+                          <th>Date</th>
+                          <th>Price</th>
+                          <th>Function</th>
+                      </tr>
+                  </thead>
+                  <tbody id="cansel_or_edit">
+                  </tbody>
+              </table>
+              </div>
+          </div>
+      </div>
+  </div>
+
+  <div class="tab-content mt-4">
+    <div class="tab-pane fade show" id="Appointment_hstory">
+        <div class="row">
+            <div class="col-md-12 text-start" >
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                        <th>First Name</th>
+                        <th>Last Name</th>
+                        <th>Treatment Type</th>
+                        <th>Doctor Name</th>
+                        <th>Date</th>
+                        <th>Price</th>
+                    </tr>
+                </thead>
+                <tbody id="history">
+                </tbody>
+            </table>
+            </div> 
+        </div>
+    </div>
+  </div>
+
+</form>
+</div>    
