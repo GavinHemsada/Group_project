@@ -1,0 +1,41 @@
+<div class="modal-header">
+    <h5 class="modal-title" id="exampleModalLabel">Edit Service Details</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+</div>
+<div class="modal-body">
+    <form id="editAppointmentForm">
+        <div class="row mb-3">
+            <label  class="col-sm-2 col-form-label text-start">Service Name</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="s_name" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label  class="col-sm-2 col-form-label text-start">Photo</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="s_photo" disabled>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label  class="col-sm-2 col-form-label text-start">Discription</label>
+            <div class="col-sm-8">
+                <input type="text"  class="form-control" id="s_discription" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <label  class="col-sm-2 col-form-label text-start">Price</label>
+            <div class="col-sm-8">
+                <input type="text" class="form-control" id="s_price" required>
+            </div>
+        </div>
+
+        <div class="row mb-3">
+            <div class="col-sm-10 d-flex justify-content-end">
+                <button type="submit" class="btn btn-success" id="Edit_btn_service">EDIT</button>
+            </div>
+        </div>
+    </form>
+</div>
