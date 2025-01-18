@@ -1,0 +1,117 @@
+<h1 class="card-title m-0">Payment</h1>
+<div class=" flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3">
+    <div class="card mt-3">
+        <div class="card-body">
+            <ul class="nav nav-tabs justify-content-center">
+                <li class="nav-item">
+                    <a class="nav-link active" data-bs-toggle="tab" href="#Payment">
+                        <p>Subcription Payments</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#new_Payment">
+                        <p>Treatment Payments</p>
+                    </a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" data-bs-toggle="tab" href="#subplan">
+                        <p>Subscription Plans</p>
+                    </a>
+                </li>
+            </ul>
+
+            <div class="tab-content mt-4">
+                <div class="tab-pane fade show active" id="Payment">
+
+                    <div class="d-flex gap-2 justify-content-end">
+                        <div class="dropdown " >
+                            <button class="btn btn-secondary dropdown-toggle" type="button" id="filterDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                Select Filters
+                            </button>
+                            <div class="dropdown-menu p-3" aria-labelledby="filterDropdown">
+                                <div class="d-flex flex-wrap gap-2">
+                                    <label><input type="checkbox" class="filter-checkbox" value="Patient_ID">Patient ID</label>
+                                    <label><input type="checkbox" class="filter-checkbox" value="Sub_Type">Subscription Type</label>
+                                    <label><input type="checkbox" class="filter-checkbox" value="Sub_name">Subscription Name</label>
+                                    <label><input type="checkbox" class="filter-checkbox" value="Date">Date</label>
+                                    <label><input type="checkbox" class="filter-checkbox" value="States">States</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="d-flex gap-2 mb-3 ">
+                            <input type="text" id="searchBarPayment" placeholder="Search Appointment Details" class="form-control" style="width: 300px;">
+                            <button id="searchButtonPayment" class="btn btn-primary">Search</button>                       
+                        </div>
+                    </div>
+
+                    <div class="tab-pane fade show">
+                        <div class="row">
+                            <div class="col-md-12 text-start">
+                                <div style="height: 450px; max-width: 100%; overflow: auto;">
+                                    <table class="table table-bordered" style="min-width: 1200px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient ID</th>
+                                                <th>Subscription Type</th>
+                                                <th>Subscription Name</th>
+                                                <th>Date</th>
+                                                <th>Price</th>
+                                                <th>States</th>
+                                                <th class="d-flex gap-4">Function</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Payment_sub_tabel_body">
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="tab-pane fade" id="new_Payment">
+                        <div class="row">
+                            <div class="col-md-12 text-start">
+                                <div style="height: 450px; max-width: 100%; overflow: auto;">
+                                    <table class="table table-bordered" style="min-width: 1200px;">
+                                        <thead>
+                                            <tr>
+                                                <th>Patient_ID</th>
+                                                <th>Date</th>
+                                                <th>Type</th>
+                                                <th>Price</th>
+                                                <th class="d-flex gap-4">Function</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody id="Payment_tabel_body"></tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                </div>
+
+                <div class="tab-pane fade" id="subplan">
+                    <div class="row">
+                        <div class="col-md-12 text-start">
+                            <div style="height: 450px; max-width: 100%; overflow: auto;">
+                                <table class="table table-bordered" style="min-width: 1200px;">
+                                    <thead>
+                                        <tr>
+                                            <th>Type</th>
+                                            <th>Price</th>
+                                            <th>Usage</th>
+                                            <th class="d-flex gap-4">Function</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="subplan_tabel_body"></tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+

@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+  <html lang="en">
+  <head>
+      <meta charset="UTF-8">
+      <title>Sign In</title>
+      <link rel="icon"href="../../images/logo.png" type="image/x-icon"/>
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  </head>
+  <body style="background-image: url('../../images/admin_bg.jpg'); background-size: cover; background-position: center;">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <div id="alert"  style=" position: fixed;width: 350px;top:50%;left: 620px;border-radius: 50%; z-index: 1050;"></div>   
+    <div class="container d-flex justify-content-center align-items-center min-vh-100">
+      <div class="card p-4 shadow p-4 "style ="width: 70%;">
+          <div class="card-body ">
+            <div class=" d-flex justify-content-center ">
+                <img src="../../images/logo.png" width="100px" height="100px">
+            </div>
+              <div class="d-flex justify-content-center mb-3">
+                  <h3 class="card-title">Sign In for Staff</h3>
+              </div>
+              <form class="row g-3" method="POST" onsubmit="return validateForm()">
+                <div class="col-md-2">
+                  <label class="form-label">First name</label>
+                  <input type="text" class="form-control" id="fname" onchange="fnameCheck()" required>
+                  <span id="name_error" class="text-danger"></span>
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Last name</label>
+                  <input type="text" class="form-control" id="lname" onchange="lnameCheck()" required>
+                  <span id="name_error" class="text-danger"></span>
+                </div>
+                <div class="col-md-4">
+                  <label  class="form-label">Email</label>
+                  <div class="input-group has-validation">
+                    <span class="input-group-text" >@</span>
+                    <input type="text" class="form-control" id="mail" onchange="mailCheck()" required>
+                    <span id="email_error" class="text-danger"></span>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <label class="form-label">Phone Number</label>
+                  <input type="text" class="form-control " id="phonenumber" onchange="phoneCheck()" required>
+                  <span id="pnumber_error" class="text-danger"></span>
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Street Number</label>
+                  <input type="text" class="form-control" id="snumber" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">Street Name</label>
+                  <input type="text" class="form-control" id="sname" required>
+                </div>
+                <div class="col-md-3">
+                  <label class="form-label">City</label>
+                  <input type="text" class="form-control" id="city" required>
+                </div>
+                <div class="col-md-2">
+                  <label  class="form-label">Gender</label>
+                  <select class="form-select" id="gender" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label  class="form-label">Role</label>
+                  <select class="form-select " id="role" required>
+                    <option selected disabled value="">Choose...</option>
+                    <option>Staff</option>
+                    <option>Staff2</option>
+                  </select>
+                </div>
+                <div class="col-md-2">
+                  <label class="form-label">Age</label>
+                  <input type="number" class="form-control" id="age" min="0" required>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label">Password</label>
+                    <div class="input-group">
+                        <input class="form-control" type="password" id="password" onchange="passwordCheck()" required>
+                        <span class="input-group-text" id="togglePassword1">
+                            <i class="fa fa-eye-slash pass"></i>
+                        </span>
+                    </div>
+                    <span id="pass_error" class="text-danger"></span>
+                </div>
+                <div class="col-md-5">
+                    <label class="form-label">Confirm Password</label>
+                    <div class="input-group">
+                        <input class="form-control" type="password" id="conpassword" onchange="conPsaawordCheck()" required>
+                        <span class="input-group-text" id="togglePassword2">
+                            <i class="fa fa-eye-slash conpass"></i>
+                        </span>
+                    </div>
+                    <span id="conPass_error" class="text-danger"></span>
+                  </div>
+                <div class="col-md-12">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" required>
+                        <label class="form-check-label" >
+                          Agree to terms and conditions
+                        </label>
+                    </div>
+                </div>
+                <div class="col-12">
+                  <button class="btn btn-primary w-100" type="submit">Register</button>
+                </div>
+                <p class="text-center mt-3 mb-0">Have an Account <a href="./Admin_login.html">Sign in</a>.</p>
+              </form>
+          </div>
+      </div>
+  </div>
+  <script>
+    const Alert = (message, type,location) => {
+      const alertPlaceholder = document.getElementById(location);
+      const wrapper = document.createElement('div');
+      wrapper.innerHTML = `
+          <div class="alert alert-${type} alert-dismissible fade show " role="alert">
+                <div class="container d-flex justify-content-center"><b>${message}</b></div>
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+          `;
+
+      alertPlaceholder.append(wrapper);
+      setTimeout(function() {
+        wrapper.remove();
+      }, 2000);
+    };
+    function fnameCheck(){
+      var name = document.getElementById('fname').value;
+      var errorname = document.getElementById('name_error');
+      const nameRegex = /^[a-zA-Z\s]+$/;
+      if(!name.match(nameRegex)){
+        errorname.textContent = 'only letters can use.';
+      }else{
+        errorname.textContent = '';
+      }
+    }
+    function lnameCheck(){
+      var name = document.getElementById('lname').value;
+      var errorname = document.getElementById('name_error');
+      const nameRegex = /^[a-zA-Z\s]+$/;
+      if(!name.match(nameRegex)){
+        errorname.textContent = 'only letters can use.';
+      }else{
+        errorname.textContent = '';
+      }
+    }
+    function mailCheck(){
+      var mail = document.getElementById('mail').value;
+      var mailError = document.getElementById('email_error');
+      var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      if(!mail.match(emailRegex)){
+        mailError.textContent = 'enter valid email';
+      }else{
+        mailError.textContent ='';
+      }
+    }
+    function phoneCheck(){
+      var number = document.getElementById('phonenumber').value;
+      var numberError = document.getElementById('pnumber_error');
+      const phoneRegex = /^\d{10}$/;
+      if(!number.match(phoneRegex)){
+        numberError.textContent = "Enter 10-digit phone number";
+      }else{
+        numberError.textContent ='';
+      }
+    }
+    function passwordCheck(){
+      var pass = document.getElementById('password').value;
+      var passerror = document.getElementById('pass_error');
+      var errorMessage = '';
+      if (!/[a-z]/.test(pass)) {
+          errorMessage += 'Password must contain at least one lowercase letter.<br>';
+      }
+      if (!/[A-Z]/.test(pass)) {
+          errorMessage += 'Password must contain at least one uppercase letter.<br>';
+      }
+      if (!/\d/.test(pass)) {
+          errorMessage += 'Password must contain at least one number.<br>';
+      }
+      if (!/[\W_]/.test(pass)) {
+          errorMessage += 'Password must contain at least one special character.<br>';
+      }
+      if (pass.length < 8) {
+          errorMessage += 'Password must be at least 8 characters long.<br>';
+      }
+      passerror.innerHTML = errorMessage;
+      if (errorMessage == '') {
+        passerror.textContent = '';
+      }
+    }
+    function conPsaawordCheck(){
+      var conpass = document.getElementById('conpassword').value;
+      var pass = document.getElementById('password').value;
+      var conpasserror = document.getElementById('conPass_error');
+      if(pass != conpass){
+        conpasserror.textContent = 'Passwords do not match.';
+      }else{
+        conpasserror.textContent ='';
+      }
+    }
+    function submitedata(event){
+      event.preventDefault();
+      var fname = document.getElementById('fname').value;
+      var lname = document.getElementById('lname').value;
+      var mail = document.getElementById('mail').value;
+      var number = document.getElementById('phonenumber').value;
+      var age = document.getElementById('age').value;
+      var snumber = document.getElementById('snumber').value;
+      var sname = document.getElementById('sname').value;
+      var city = document.getElementById('city').value;
+      var gender = document.getElementById('gender').value;
+      var role = document.getElementById('role').value;
+      var pass = document.getElementById('password').value;
+      fetch('../../../Clinic Management System/admin/admin_staff_Backend/admin_register.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
+                body: new URLSearchParams({
+                    'fname': name,
+                    'lname' : lname,
+                    'mail' : mail,
+                    'pnumber' : number,
+                    'snumber' : snumber,
+                    'sname' : sname,
+                    'city' : city,
+                    'gender' : gender,
+                    'role' : role,
+                    'age' : age,
+                    'password' : pass
+                })
+            })
+            .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text(); 
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                var mailError = document.getElementById('email_error');
+                try {
+                    const data = JSON.parse(text);
+                    if (data.status == 'success') {
+                      window.location.href = "../../../Clinic Management System/admin/admin_staff_Frontend/Admin_login.html";
+                    } else if(data.status =='error') {
+                      Alert("Fix Errors.","danger","Can't Add Data into Database.");
+                    }else if(data.status == 'fail'){
+                      mailError.textContent = "Email already Used.";
+                    }
+                } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => console.error('Error:', error));
+    }
+    function validateForm() {
+        var errors = document.querySelectorAll('.text-danger');
+        for (var i = 0; i < errors.length; i++) {
+          if (errors[i].textContent != '') {
+            Alert("Fix Errors.","danger","alert");
+            return false;
+            break;
+          }
+        }
+        submitedata(event);
+        return true;
+    }
+    document.getElementById('togglePassword1').addEventListener('click', function () {
+    const passwordInput = document.getElementById('password');
+    const iconpass = this.querySelector('.pass');
+    if (passwordInput.type === 'password') {
+        passwordInput.type = 'text';
+        iconpass.classList.remove('fa-eye-slash');
+        iconpass.classList.add('fa-eye');
+    }else {
+        passwordInput.type = 'password';
+        iconpass.classList.remove('fa-eye');
+        iconpass.classList.add('fa-eye-slash');
+    }
+    });
+    document.getElementById('togglePassword2').addEventListener('click', function () {
+    const conpasswordInput = document.getElementById('conpassword');
+    const iconcon = this.querySelector('.conpass');
+    if(conpasswordInput.type === 'password'){
+        conpasswordInput.type = 'text';
+        iconcon.classList.remove('fa-eye-slash');
+        iconcon.classList.add('fa-eye');
+    }else{
+        conpasswordInput.type = 'password';
+        iconcon.classList.remove('fa-eye');
+        iconcon.classList.add('fa-eye-slash');
+    }
+    });
+  </script>
+  </body>
+  </html>
+  
+</body>
+</html>

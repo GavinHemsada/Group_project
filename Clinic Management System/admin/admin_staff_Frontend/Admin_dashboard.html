@@ -1,0 +1,1939 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Eagle Vision Eye Care</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+    <style>
+        .content-section {
+            display: none;
+        }
+        .active-section {
+            display: block;
+            color: blue;
+        }
+        .text-dark{
+            color: black;
+        }
+    </style>
+     <script type="text/javascript"> 
+        function preventBack() { 
+            window.history.forward();  
+        } 
+          
+        setTimeout("preventBack()", 0); 
+          
+        window.onunload = function () { null }; 
+    </script> 
+</head>
+<body>
+        <div class="d-flex justify-content-end pt-3 pe-4">
+            <div class="d-flex align-items-center" data-bs-toggle="dropdown" aria-expanded="false" id="profileDropdown" style="cursor: pointer;">
+                <img src="../../images/empty_profile_img.png" id="pro_img" width="50" height="50" alt="Profile" class="rounded-circle me-2" style="border: 1px solid black;">
+                <i class="bi bi-caret-down-fill"></i>
+            </div>
+            <div class="dropdown">
+                <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="profileDropdown">
+                    <li id="profile_icon" onclick="loadSections('../admin_staff_Frontend/admin dashboard Components/profile.html'); profiledetails();"><a class="dropdown-item" href="#"><i class="bi bi-person"></i> Profile</a></li>
+                    <li id="logoutBtn"><a class="dropdown-item" href="#"><i class="bi bi-box-arrow-right"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="modal fade" id="myModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+            <div class="modal-dialog modal-lg">
+              <div class="modal-content" id="modal-content"></div>
+            </div>
+        </div>
+        
+    <div class="container-fluid">
+        <div class="row">
+            <!-- Sidebar -->
+            <nav class="col-md-3 col-lg-2 bg-light fixed-top p-3 vh-100">
+                <div class="text-center mb-4">
+                    <img src="../../../Clinic Management System/images/logo.png" width="70" height="70" alt="Logo" class="rounded-circle mb-2" >
+                    <h4 style="color: rgb(0, 0, 137);">Eagle Vision Eye Care</h4>
+                </div>
+                <ul class="nav flex-column">
+                    <li class="nav-item mb-3">
+                        <a href="#" class="nav-link active" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/dashboard_page.html">
+                            <i class="bi bi-house"></i> Dashboard
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3 ">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/appointment.html">
+                            <i class="bi bi-calendar"></i> Appointments
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/patients.html">
+                            <i class="bi bi-people"></i> Patients
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/doctor.html">
+                            <i class="bi bi-person-badge"></i> Doctors
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/service.html">
+                            <i class="bi bi-gear"></i> Services
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/notification.html" >
+                            <i class="bi bi-bell-fill"></i> Notification
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3" id="staff">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/staff.html">
+                            <i class="bi bi-person"></i> Staff
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3" id="payment">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/payments.html">
+                            <i class="bi bi-currency-dollar"></i> Payments
+                        </a>
+                    </li>
+                    <li class="nav-item mb-3" id="summary">
+                        <a href="#" class="nav-link text-dark" data-file="../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/summary.html">
+                            <i class="bi bi-bar-chart"></i> Summary
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <!-- Main Content -->
+            <main class="col-12 col-md-10 ms-sm-auto col-lg-10 px-md-4">
+                <div id="content-section"></div>
+            </main>  
+        </div>
+    </div>
+    <a href=""></a>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        document.addEventListener("DOMContentLoaded", function(e) {
+            loadSection('../../../Clinic Management System/admin/admin_staff_Frontend/admin dashboard Components/dashboard_page.html');
+            fetchdetails();
+            var role = localStorage.getItem("role");
+            var staff = document.getElementById('staff');
+            var payment = document.getElementById('payment');
+            var summary = document.getElementById('summary');
+            if(role == "staff"){
+                staff.style.display = "none"
+                payment.style.display = "none"
+                summary.style.display = "none"
+            }
+
+            var navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(function(link) {
+                link.addEventListener('click', function(e) {
+                    // e.preventDefault();
+                    var file = this.getAttribute('data-file');
+                    loadSection(file);
+                    navLinks.forEach(function(link) {
+                        link.classList.remove('active');
+                        link.classList.add('text-dark');
+                    });
+                    this.classList.add('active');
+                    link.classList.remove('text-dark');
+                });
+            });
+    
+            function loadSection(file) {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', file, true);
+                xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('content-section').innerHTML = xhr.responseText;   
+                        if(file.includes('dashboard_page.html')){
+                            chart(); 
+                        }
+                        if(file.includes('appointment.html')) {
+                            appointment();
+                        } 
+                        if(file.includes('patients.html')){
+                            patient();
+                        }
+                        if(file.includes('doctor.html')){
+                            Doctor();
+                        }
+                        if(file.includes('service.html')){
+                            service();
+                        }
+                        if(file.includes('payments.html')){
+                            payments();
+                        }
+                        if(file.includes('staff.html')){
+                            staffDetails();
+                        }
+                    }
+                };
+                xhr.send();
+            }
+        });
+        function chart(){
+            const ctx1 = document.getElementById('incomeChart').getContext('2d');
+            const incomeChart = new Chart(ctx1, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Income',
+                        data: [200, 400, 300, 500, 600, 700],
+                        borderColor: 'rgb(75, 192, 192)',
+                        fill: false
+                    }]
+                }
+            });
+        
+            const ctx2 = document.getElementById('appointmentChart').getContext('2d');
+            const appointmentChart = new Chart(ctx2, {
+                type: 'line',
+                data: {
+                    labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                    datasets: [{
+                        label: 'Appointments',
+                        data: [1, 5, 3, 8, 6, 7],
+                        borderColor: 'rgb(54, 162, 235)',
+                        fill: false
+                    }]
+                }
+            });
+        }
+
+        function loadpopupPage(file) {
+            return new Promise((resolve, reject) => {
+                var xhr = new XMLHttpRequest();
+                xhr.open('GET', file, true);
+                xhr.onreadystatechange = function () {
+                    if (xhr.readyState === 4) {
+                        if (xhr.status === 200) {
+                            document.getElementById('modal-content').innerHTML = xhr.responseText;
+                            var modal = new bootstrap.Modal(document.getElementById('myModal'));
+                            modal.show();
+
+                            resolve();
+                        } else {
+                            reject('Failed to load page. Status: ' + xhr.status);
+                        }
+                    }
+                };
+                xhr.onerror = function () {
+                    reject('An error occurred while loading the file.');
+                };
+                xhr.send();
+            });
+        }
+
+        // ---------------logout button -------------------
+
+        document.getElementById('logoutBtn').addEventListener('click', function() {
+            localStorage.clear();
+            sessionStorage.clear();
+            fetch('../../../Clinic Management System/admin/admin_staff_Backend/logout.php', {
+                method: 'POST'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    console.error('Logout request failed with status:', response.status);
+                    throw new Error('Logout failed');
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Logout response:', text);
+                window.location.href = '/Clinic Management System/welcome.html';
+            })
+            .catch(error => console.error('Error:', error));
+        });
+
+
+        // -------------------- Profile-----------------------------
+
+        function loadSections(file) {
+                var xhr = new XMLHttpRequest();
+                    xhr.open('GET', file, true);
+                    xhr.onreadystatechange = function() {
+                    if (xhr.readyState === 4 && xhr.status === 200) {
+                        document.getElementById('modal-content').innerHTML = xhr.responseText;
+                        var modal = new bootstrap.Modal(document.getElementById('myModal'));
+                        modal.show();
+                        profile_edit();
+                        imgChange();
+                        profile_details_edit();
+                    }
+                };
+                xhr.send();
+        }
+        function profile_edit(){
+            document.querySelectorAll('.edit_btn').forEach(function(button) {
+                button.addEventListener('click', function() {
+                    const inputField = this.previousElementSibling;
+                    if (inputField && inputField.disabled) {
+                        inputField.removeAttribute('disabled');
+                        inputField.focus();
+                        document.querySelector('.save_btn').removeAttribute('hidden');
+                    }
+                });
+            });
+        }
+
+        // ------------------Profile Photo -------------------------------------------------
+        
+        function fetchdetails() {
+            var role = localStorage.getItem("role");
+            const queryString = new URLSearchParams({'role':role}).toString();
+            return fetch(`../admin_staff_Backend/profile.php?${queryString}`, {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    if (data.states != 'error') {
+                        if (data.Profile_photo != null) {
+                            document.getElementById("pro_img").src = '../../images/Profile_img/Staff/' + data.Profile_photo;
+                        } else if(role == 'admin'){
+                            console.log('else admin')
+                        }
+                        else {
+                            document.getElementById("pro_img").src = '../../images/empty_profile_img.png';
+                        }
+                        if (data.states == 'type_error') {
+                            alert('Please upload .jpg and .png type files.');
+                        }
+                
+                    }else if(data.states == 'error'){
+                        document.getElementById('profile_icon').style.display = "none";
+                        document.getElementById("pro_img").src = '../../images/admin.png';
+                    }
+                    return data;
+                } catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+
+        function imgChange(){
+            document.getElementById("fileImg").addEventListener('change', function() {
+                var file = document.getElementById("fileImg").files[0];
+                var formData = new FormData();
+                if (file) {
+                document.getElementById("pro_image").src = URL.createObjectURL(file);
+                formData.append('upload_img', file);
+                }
+                fetch('../admin_staff_Backend/profile.php', {
+                method: 'POST',
+                body: formData,
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.status === 'success') {
+                            alert('succesfull added');
+                        }else{
+                        alert('cant added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+        function profiledetails(){
+            fetchdetails()
+                .then(data => {
+                    if (data) {
+                        console.log(data);
+                        if (data.Profile_photo != null) {
+                            document.getElementById("pro_image").src = '../../images/Profile_img/Staff/' + data.Profile_photo;
+                        } else {
+                            document.getElementById("pro_image").src = '../../images/empty_profile_img.png';
+                        }
+                        document.getElementById('firstName').value = data.Fisrt_name;
+                        document.getElementById('lastName').value = data.Last_name;
+                        document.getElementById('email').value = data.Email;
+                        document.getElementById('age').value = data.Age;
+                        document.getElementById('role').value = data.Role;
+                        document.getElementById('gender').value = data.Gender;
+                        document.getElementById('phone').value = data.Phone_Number;
+                        document.getElementById('snumber').value = data.Street_Number;
+                        document.getElementById('sname').value = data.Street_Name;
+                        document.getElementById('city').value = data.City;
+                    } else {
+                        console.error('No data returned');
+                    }
+                })
+                .catch(error => {
+                    console.error('Error in profiledetails:', error);
+                });
+        }
+        function profile_details_edit(){
+            document.querySelector('.save_btn').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname = document.getElementById('firstName').value;
+                var lname = document.getElementById('lastName').value;
+                var email = document.getElementById('email').value;
+                var age = document.getElementById('age').value;
+                var role = document.getElementById('role').value;
+                var gender = document.getElementById('gender').value;
+                var phone = document.getElementById('phone').value;
+                var snum = document.getElementById('snumber').value;
+                var sname = document.getElementById('sname').value;
+                var city = document.getElementById('city').value;
+                fetch('../admin_staff_Backend/profile.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'fname' : fname,
+                        'lname' : lname,
+                        'email': email,
+                        'age' : age,
+                        'role' : role,
+                        'gender': gender,
+                        'phone' : phone,
+                        'snumber' : snum,
+                        'sname' : sname,
+                        'city' : city
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    // console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.status === 'details_add') {
+                            alert('data update');
+                            document.querySelector('.save_btn').setAttribute('hidden', true);
+                            document.querySelectorAll('.editbtn').forEach(button => {
+                                button.setAttribute('disabled', '');
+                            });
+                        }else if(data.status === 'detals_notadd'){
+                            alert("data not update");
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        // ------------------ Appointment -------------------------------------------------------------
+
+        function appointment(){
+            fetch('../admin_staff_Backend/appointment.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                // console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    window.originalAppointments = data;
+                    buildAppointmentTable(data, document.getElementById('appointment_tabel_body'));
+
+                    const searchButton = document.getElementById('searchButton');
+                    searchButton.addEventListener('click', function () {
+                        const query = document.getElementById('searchBar').value.toLowerCase();
+                        const selectedColumns = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+                        if (selectedColumns.length === 0) {
+                            selectedColumns = ["Fisrt_name", "Last_name", "Treatment_type", "Age", "Date", "Doctor_Name", "Patient_id", "Doctor_id"];
+                        }
+                        const filteredData = window.originalAppointments.filter(item =>
+                            selectedColumns.some(column =>
+                                item[column] && item[column].toString().toLowerCase().includes(query)
+                            )
+                        );
+                        buildAppointmentTable(filteredData, document.getElementById('appointment_tabel_body'));
+                    });
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildAppointmentTable(data, Element) {
+            Element.innerHTML = '';
+            data.forEach(edit => {
+                var row = document.createElement('tr');
+                var fnameCell = document.createElement('td');
+                fnameCell.textContent = edit.Fisrt_name;
+                var lnameCell = document.createElement('td');
+                lnameCell.textContent = edit.Last_name;
+                var typeCell = document.createElement('td');
+                typeCell.textContent = edit.Treatment_type;
+                var ageCell = document.createElement('td');
+                ageCell.textContent = edit.Age;
+                var dateCell = document.createElement('td');
+                dateCell.textContent = edit.Date;
+                var DocNameCell = document.createElement('td');
+                DocNameCell.textContent = edit.Doctor_Name;
+                var priceCell = document.createElement('td');
+                priceCell.textContent = edit.Price;
+                var patientidCell = document.createElement('td');
+                patientidCell.textContent = edit.Patient_id;
+                var docidCell = document.createElement('td');
+                docidCell.textContent = edit.Doctor_id;
+
+                var btnCell = document.createElement('td');
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-warning btn-sm me-2'; 
+                editButton.id = edit.Appointment_id;
+                editButton.onclick = function() {
+                    editAppointment(this.id);
+                };
+                btnCell.appendChild(editButton);
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm'; 
+                deleteButton.id = edit.Appointment_id;
+                deleteButton.onclick = function() {
+                    deleteAppointment(this.id);
+                };
+                btnCell.appendChild(deleteButton);
+
+                row.appendChild(fnameCell);
+                row.appendChild(lnameCell);
+                row.appendChild(typeCell);
+                row.appendChild(ageCell);
+                row.appendChild(dateCell);
+                row.appendChild(DocNameCell);
+                row.appendChild(priceCell);
+                row.appendChild(patientidCell);
+                row.appendChild(docidCell);
+                row.appendChild(btnCell);
+
+                Element.appendChild(row);
+            });
+        }
+
+        function editAppointment(appointmentID){
+            const queryString = new URLSearchParams({'appointmentID':appointmentID}).toString();
+            fetch(`../admin_staff_Backend/appointment.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_appointment.html')
+                            .then(() => {
+                                document.getElementById('treatment_type').value = data.Treatment_type;
+                                document.getElementById('app_fname').value = data.Fisrt_name;
+                                document.getElementById('app_lname').value = data.Last_name;
+                                document.getElementById('app_age').value = data.Age;
+                                document.getElementById('appointment_date').value = data.Date;
+                                document.getElementById('doctor_name').value = data.Doctor_Name;
+                                document.getElementById('price').value = data.Price;
+                                editAppDetails(appointmentID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editAppDetails(appointmentID){
+            document.getElementById('Edit_btn').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname =  document.getElementById('app_fname').value;
+                var lname = document.getElementById('app_lname').value;
+                var age = document.getElementById('app_age').value
+                var date =  document.getElementById('appointment_date').value;
+
+                fetch('../admin_staff_Backend/appointment.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'appointmentID': appointmentID,
+                        'fname' : fname,
+                        'lname' : lname,
+                        'age' : age,
+                        'date' : date
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deleteAppointment(appointmentID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/appointment.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'appointmentID': appointmentID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        // --------------------------------- Patient ----------------------------------
+
+        function patient(){
+            fetch('../admin_staff_Backend/patient.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                // console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    window.originalAppointments = data;
+                    buildPatientTable(data, document.getElementById('patient_tabel_body'));
+
+                    const searchButton = document.getElementById('searchButtonPatient');
+                    searchButton.addEventListener('click', function () {
+                        const query = document.getElementById('searchBarPatient').value.toLowerCase();
+                        const selectedColumns = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+                        if (selectedColumns.length === 0) {
+                            selectedColumns = ["Fisrt_name", "Last_name", "email", "Gender", "Date", "City"];
+                        }
+                        const filteredData = window.originalAppointments.filter(item =>
+                            selectedColumns.some(column =>
+                                item[column] && item[column].toString().toLowerCase().includes(query)
+                            )
+                        );
+                        buildPatientTable(filteredData, document.getElementById('patient_tabel_body'));
+                    });
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildPatientTable(data, Element) {
+            Element.innerHTML = '';
+            data.forEach(edit => {
+                var row = document.createElement('tr');
+                var fnameCell = document.createElement('td');
+                fnameCell.textContent = edit.Fisrt_name;
+                var lnameCell = document.createElement('td');
+                lnameCell.textContent = edit.Last_name;               
+                var emailCell = document.createElement('td');
+                emailCell.textContent = edit.email;               
+                var genderCell = document.createElement('td');
+                genderCell.textContent = edit.Gender;              
+                var passwordCell = document.createElement('td');
+                passwordCell.textContent = edit.password;            
+                var phoneNumberCell = document.createElement('td');
+                phoneNumberCell.textContent = edit.Phone_Number;         
+                var streetnumCell = document.createElement('td');
+                streetnumCell.textContent = edit.Street_Number;          
+                var streetNamedCell = document.createElement('td');
+                streetNamedCell.textContent = edit.Street_Name;          
+                var cityCell = document.createElement('td');
+                cityCell.textContent = edit.City;
+
+                var btnCell = document.createElement('td');
+                
+                var btnContainer = document.createElement('div');
+                btnContainer.className = 'd-flex gap-2'; 
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-warning btn-sm';
+                editButton.id = edit.Patient_id;
+                editButton.onclick = function() {
+                    editPatient(this.id);
+                };
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm';
+                deleteButton.id = edit.Patient_id;
+                deleteButton.onclick = function() {
+                    deletePatient(this.id);
+                };
+
+                btnContainer.appendChild(editButton);
+                btnContainer.appendChild(deleteButton);
+
+                btnCell.appendChild(btnContainer);
+
+                row.appendChild(fnameCell);
+                row.appendChild(lnameCell);
+                row.appendChild(emailCell);
+                row.appendChild(genderCell);
+                row.appendChild(passwordCell);
+                row.appendChild(phoneNumberCell);
+                row.appendChild(streetnumCell);
+                row.appendChild(streetNamedCell);
+                row.appendChild(cityCell);
+                row.appendChild(btnCell);
+
+                Element.appendChild(row);
+            });
+        }
+        function editPatient(patientID){
+            const queryString = new URLSearchParams({'patientID':patientID}).toString();
+            fetch(`../admin_staff_Backend/patient.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_patient.html')
+                            .then(() => {
+                                document.getElementById('pa_fname').value = data.Fisrt_name;
+                                document.getElementById('pa_lname').value = data.Last_name;
+                                document.getElementById('pa_email').value = data.email;
+                                document.getElementById('pa_gender').value = data.Gender;
+                                document.getElementById('pa_pnumber').value = data.Phone_Number;
+                                document.getElementById('pa_snumber').value = data.Street_Number;
+                                document.getElementById('pa_sname').value = data.Street_Name;
+                                document.getElementById('pa_city').value = data.City;
+                                editPatientDetails(patientID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editPatientDetails(patientID){
+            document.getElementById('Edit_btn_patient').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname =  document.getElementById('pa_fname').value;
+                var lname = document.getElementById('pa_lname').value;
+                var email = document.getElementById('pa_email').value
+                var gender =  document.getElementById('pa_gender').value;
+                var pnumber =  document.getElementById('pa_pnumber').value;
+                var snumber =  document.getElementById('pa_snumber').value;
+                var sname =  document.getElementById('pa_sname').value;
+                var city =  document.getElementById('pa_city').value;
+
+                fetch('../admin_staff_Backend/patient.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'patientID': patientID,
+                        'fname' : fname,
+                        'lname' : lname,
+                        'email' : email,
+                        'gender' : gender,
+                        'pnumber' : pnumber,
+                        'snumber' : snumber,
+                        'sname' : sname,
+                        'city' : city,
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deletePatient(patientID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/patient.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'patientID': patientID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        // ------------------------------ Doctor -------------------------------------------------------------------------
+
+        function Doctor(){
+            fetch('../admin_staff_Backend/doctor.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                // console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    window.originalAppointments = data;
+                    buildDoctorTable(data, document.getElementById('Doctor_tabel_body'));
+
+                    const searchButton = document.getElementById('searchButtonDoc');
+                    searchButton.addEventListener('click', function () {
+                        const query = document.getElementById('searchBarDoc').value.toLowerCase();
+                        const selectedColumns = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+                        if (selectedColumns.length === 0) {
+                            selectedColumns = ["Fisrt_name", "Last_name", "email", "Gender", "Age", "Role","Phone_Number","City","password","Hospital_Name","Hospital_ID"];
+                        }
+                        const filteredData = window.originalAppointments.filter(item =>
+                            selectedColumns.some(column =>
+                                item[column] && item[column].toString().toLowerCase().includes(query)
+                            )
+                        );
+                        buildDoctorTable(filteredData, document.getElementById('Doctor_tabel_body'));
+                    });
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildDoctorTable(data, Element) {
+            Element.innerHTML = '';
+            data.forEach(edit => {
+                var row = document.createElement('tr');
+                var fnameCell = document.createElement('td');
+                fnameCell.textContent = edit.Fisrt_name;
+                var lnameCell = document.createElement('td');
+                lnameCell.textContent = edit.Last_name;               
+                var emailCell = document.createElement('td');
+                emailCell.textContent = edit.email;               
+                var genderCell = document.createElement('td');
+                genderCell.textContent = edit.Gender;              
+                var ageCell = document.createElement('td');
+                ageCell.textContent = edit.Age; 
+                var roleCell = document.createElement('td');
+                roleCell.textContent = edit.Role; 
+                var phoneNumberCell = document.createElement('td');
+                phoneNumberCell.textContent = edit.Phone_Number;         
+                var streetnumCell = document.createElement('td');
+                streetnumCell.textContent = edit.Street_Number;          
+                var streetNamedCell = document.createElement('td');
+                streetNamedCell.textContent = edit.Street_Name;          
+                var cityCell = document.createElement('td');
+                cityCell.textContent = edit.City;
+                var passwordCell = document.createElement('td');
+                passwordCell.textContent = edit.password; 
+                var hospitalNameCell = document.createElement('td');
+                hospitalNameCell.textContent = edit.Hospital_Name; 
+                var hospitalIdCell = document.createElement('td');
+                hospitalIdCell.textContent = edit.Hospital_ID; 
+
+                var btnCell = document.createElement('td');
+                
+                var btnContainer = document.createElement('div');
+                btnContainer.className = 'd-flex gap-2'; 
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-warning btn-sm';
+                editButton.id = edit.Doctor_id;
+                editButton.onclick = function() {
+                    editDoctor(this.id);
+                };
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm';
+                deleteButton.id = edit.Doctor_id;
+                deleteButton.onclick = function() {
+                    deleteDoctor(this.id);
+                };
+
+                btnContainer.appendChild(editButton);
+                btnContainer.appendChild(deleteButton);
+
+                btnCell.appendChild(btnContainer);
+
+                row.appendChild(fnameCell);
+                row.appendChild(lnameCell);
+                row.appendChild(emailCell);
+                row.appendChild(genderCell);
+                row.appendChild(ageCell);
+                row.appendChild(roleCell);
+                row.appendChild(phoneNumberCell);
+                row.appendChild(streetnumCell);
+                row.appendChild(streetNamedCell);
+                row.appendChild(cityCell);
+                row.appendChild(passwordCell);
+                row.appendChild(hospitalNameCell);
+                row.appendChild(hospitalIdCell);
+                row.appendChild(btnCell);
+
+                Element.appendChild(row);
+            });
+        }
+
+
+        function editDoctor(doctorID){
+            const queryString = new URLSearchParams({'doctorID':doctorID}).toString();
+            fetch(`../admin_staff_Backend/doctor.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_doctor.html')
+                            .then(() => {
+                                document.getElementById('doc_fname').value = data.Fisrt_name;
+                                document.getElementById('doc_lname').value = data.Last_name;
+                                document.getElementById('doc_email').value = data.email;
+                                document.getElementById('doc_gender').value = data.Gender;
+                                document.getElementById('doc_age').value = data.Age;
+                                document.getElementById('doc_role').value = data.Role;
+                                document.getElementById('doc_pnumber').value = data.Phone_Number;
+                                document.getElementById('doc_snumber').value = data.Street_Number;
+                                document.getElementById('doc_sname').value = data.Street_Name;
+                                document.getElementById('doc_city').value = data.City;
+                                document.getElementById('doc_hname').value = data.Hospital_Name;
+                                document.getElementById('doc_hid').value = data.Hospital_ID;
+                                editDoctorDetails(doctorID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editDoctorDetails(doctorID){
+            document.getElementById('Edit_btn_doctor').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname =  document.getElementById('doc_fname').value;
+                var lname = document.getElementById('doc_lname').value;
+                var email = document.getElementById('doc_email').value
+                var gender =  document.getElementById('doc_gender').value;
+                var age = document.getElementById('doc_age').value;
+                var role = document.getElementById('doc_role').value;
+                var pnumber =  document.getElementById('doc_pnumber').value;
+                var snumber =  document.getElementById('doc_snumber').value;
+                var sname =  document.getElementById('doc_sname').value;
+                var city =  document.getElementById('doc_city').value;
+                var hname = document.getElementById('doc_hname').value;
+                var hid = document.getElementById('doc_hid').value;
+
+                fetch('../admin_staff_Backend/doctor.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'doctorID': doctorID,
+                        'fname' : fname,
+                        'lname' : lname,
+                        'email' : email,
+                        'gender' : gender,
+                        'age' : age,
+                        'role' : role,
+                        'pnumber' : pnumber,
+                        'snumber' : snumber,
+                        'sname' : sname,
+                        'city' : city,
+                        'hname' : hname,
+                        'hid' : hid
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deleteDoctor(doctorID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/doctor.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'doctorID': doctorID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        // --------------------------------------------Service ------------------------------------------------------------
+
+        function service(){
+            fetch('../admin_staff_Backend/service.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                // console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    buildServiceTable(data, document.getElementById('Service_tabel_body'));
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildServiceTable(data, Element) {
+            Element.innerHTML = '';
+            data.forEach(edit => {
+                var row = document.createElement('tr');
+                var nameCell = document.createElement('td');
+                nameCell.textContent = edit.Service_Name;
+                var photoCell = document.createElement('td');
+                photoCell.textContent = edit.Photo;
+                var discriptionCell = document.createElement('td');
+                discriptionCell.textContent = edit.Description;
+                var priceCell = document.createElement('td');
+                priceCell.textContent = edit.Price;
+
+                var btnCell = document.createElement('td');
+                
+                var btnContainer = document.createElement('div');
+                btnContainer.className = 'd-flex gap-2'; 
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-warning btn-sm me-2'; 
+                editButton.id = edit.Service_id;
+                editButton.onclick = function() {
+                    editService(this.id);
+                };
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm'; 
+                deleteButton.id = edit.Service_id;
+                deleteButton.onclick = function() {
+                    deleteservice(this.id);
+                };
+
+                btnContainer.appendChild(editButton);
+                btnContainer.appendChild(deleteButton);
+
+                btnCell.appendChild(btnContainer);
+
+                row.appendChild(nameCell);
+                row.appendChild(photoCell);
+                row.appendChild(discriptionCell);
+                row.appendChild(priceCell);
+                row.appendChild(btnCell);
+
+                Element.appendChild(row);
+            });
+        }
+
+        function editService(serviceID){
+            const queryString = new URLSearchParams({'serviceID':serviceID}).toString();
+            fetch(`../admin_staff_Backend/service.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_service.html')
+                            .then(() => {
+                                document.getElementById('s_name').value = data.Service_Name;
+                                document.getElementById('s_photo').value = data.Photo;
+                                document.getElementById('s_discription').value = data.Description;
+                                document.getElementById('s_price').value = data.Price;
+                                editServiceDetails(serviceID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editServiceDetails(serviceID){
+            document.getElementById('Edit_btn_service').addEventListener('click',function(e){
+                e.preventDefault();
+                var sname =  document.getElementById('s_name').value;
+                var photo = document.getElementById('s_photo').value;
+                var discription = document.getElementById('s_discription').value
+                var price =  document.getElementById('s_price').value;
+                fetch('../admin_staff_Backend/service.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'serviceID': serviceID,
+                        'sname' : sname,
+                        'photo' : photo,
+                        'discription' : discription,
+                        'price' : price
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deleteservice(serviceID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/service.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'serviceID': serviceID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+        // ------------------------------ payments ----------------------------------------------------------------
+
+        function payments(){
+            fetch('../admin_staff_Backend/payments.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                console.log('Raw response text:', text);
+                // const cleanedText = text.trim().replace(/null$/, '');
+                try {
+                    const data = JSON.parse(text);
+                    // const data = JSON.parse(cleanedText);
+                    buildPaymentTable(data[1], document.getElementById('Payment_tabel_body'));
+                    buildPaymentTable(data[2], document.getElementById('subplan_tabel_body'));
+
+
+                    window.originalAppointments = data[0];
+                    buildPaymentTable(data[0], document.getElementById('Payment_sub_tabel_body'));
+
+                    const searchButton = document.getElementById('searchButtonPayment');
+                    searchButton.addEventListener('click', function () {
+                        const query = document.getElementById('searchBarPayment').value.toLowerCase();
+                        const selectedColumns = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+                        if (selectedColumns.length === 0) {
+                            selectedColumns = ["Sub_Type", "Sub_name", "Date", "Sub_Price", "States"];
+                        }
+                        const filteredData = window.originalAppointments.filter(item =>
+                            selectedColumns.some(column =>
+                                item[column] && item[column].toString().toLowerCase().includes(query)
+                            )
+                        );
+                        buildPaymentTable(filteredData, document.getElementById('Payment_sub_tabel_body'));
+                    });
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildPaymentTable(data, Element) {
+            Element.innerHTML = '';
+            if(Element == document.getElementById('Payment_sub_tabel_body')){
+                data.forEach(edit => {
+                    var row = document.createElement('tr');
+                    var pidCell = document.createElement('td');
+                    pidCell.textContent = edit.Patient_ID;
+                    var subtypeCell = document.createElement('td');
+                    subtypeCell.textContent = edit.Sub_Type;
+                    var subnameCell = document.createElement('td');
+                    subnameCell.textContent = edit.Sub_name;
+                    var dateCell = document.createElement('td');
+                    dateCell.textContent = edit.Date;
+                    var priceCell = document.createElement('td');
+                    priceCell.textContent = edit.Sub_Price;
+                    var statesCell = document.createElement('td');
+                    statesCell.textContent = edit.States;
+
+                    var btnCell = document.createElement('td');
+                    
+                    var btnContainer = document.createElement('div');
+                    btnContainer.className = 'd-flex gap-2'; 
+
+                    var editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.className = 'btn btn-warning btn-sm me-2'; 
+                    editButton.id = edit.Patient_Sub_ID;
+                    editButton.onclick = function() {
+                        editPayment(this.id)
+                    };
+
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.className = 'btn btn-danger btn-sm'; 
+                    deleteButton.id = edit.Patient_Sub_ID;
+                    deleteButton.onclick = function() {
+                        deletePayment(this.id)
+                    };
+                    
+                    btnContainer.appendChild(editButton);
+                    btnContainer.appendChild(deleteButton);
+
+                    btnCell.appendChild(btnContainer);
+
+                    row.appendChild(pidCell);
+                    row.appendChild(subtypeCell);
+                    row.appendChild(subnameCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(priceCell);
+                    row.appendChild(statesCell);
+                    row.appendChild(btnCell);
+
+                    Element.appendChild(row);
+                });
+            }
+            if(Element == document.getElementById('Payment_tabel_body')){
+                data.forEach(edit => {
+                    var row = document.createElement('tr');
+                    var pidCell = document.createElement('td');
+                    pidCell.textContent = edit.Patinet_id;
+                    var dateCell = document.createElement('td');
+                    dateCell.textContent = edit.Date;
+                    var subtypeCell = document.createElement('td');
+                    subtypeCell.textContent = edit.Payment_type;
+                    var priceCell = document.createElement('td');
+                    priceCell.textContent = edit.Price;
+
+                    var btnCell = document.createElement('td');
+                    
+                    var btnContainer = document.createElement('div');
+                    btnContainer.className = 'd-flex gap-2'; 
+
+                    var editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.className = 'btn btn-warning btn-sm me-2'; 
+                    editButton.id = edit.Payment_id;
+                    editButton.onclick = function() {
+                        // editAppointment(this.id)
+                        console.log("edit"+this.id)
+                    };
+
+                    var deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'Delete';
+                    deleteButton.className = 'btn btn-danger btn-sm'; 
+                    deleteButton.id = edit.Payment_id;
+                    deleteButton.onclick = function() {
+                        // deleteAppointment(this.id)
+                        console.log("delete"+this.id)
+                    };
+                    
+                    btnContainer.appendChild(editButton);
+                    btnContainer.appendChild(deleteButton);
+
+                    btnCell.appendChild(btnContainer);
+
+                    row.appendChild(pidCell);
+                    row.appendChild(dateCell);
+                    row.appendChild(subtypeCell);
+                    row.appendChild(priceCell);
+                    row.appendChild(btnCell);
+
+                    Element.appendChild(row);
+                });
+            }
+
+            if(Element == document.getElementById('subplan_tabel_body')){
+                data.forEach(edit => {
+                    var row = document.createElement('tr');
+                    var typeCell = document.createElement('td');
+                    typeCell.textContent = edit.Type;
+                    var priceCell = document.createElement('td');
+                    priceCell.textContent = edit.Price;
+                    var usageCell = document.createElement('td');
+                    usageCell.textContent = edit.Usage;
+                    
+
+                    var btnCell = document.createElement('td');
+                    
+                    var btnContainer = document.createElement('div');
+                    btnContainer.className = 'd-flex gap-2'; 
+
+                    var editButton = document.createElement('button');
+                    editButton.textContent = 'Edit';
+                    editButton.className = 'btn btn-warning btn-sm me-2'; 
+                    editButton.id = edit.Sub_ID;
+                    editButton.onclick = function() {
+                        editSubPlan(this.id)
+                    };
+ 
+                    btnContainer.appendChild(editButton);
+                    btnCell.appendChild(btnContainer);
+
+                    row.appendChild(typeCell);
+                    row.appendChild(priceCell);
+                    row.appendChild(usageCell);
+                    row.appendChild(btnCell);
+
+                    Element.appendChild(row);
+                });
+            }
+        }
+
+        function editPayment(paymentID){
+            const queryString = new URLSearchParams({'paymentID':paymentID}).toString();
+            fetch(`../admin_staff_Backend/payments.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_payment.html')
+                            .then(() => {
+                                document.getElementById('p_pid').value = data.Patient_ID;
+                                document.getElementById('p_stype').value = data.Sub_Type;
+                                document.getElementById('p_sname').value = data.Sub_name;
+                                document.getElementById('p_date').value = data.Date;
+                                document.getElementById('p_price').value = data.Sub_Price;
+                                document.getElementById('p_states').value = data.States;
+                                editPaymentDetails(paymentID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editPaymentDetails(paymentID){
+            document.getElementById('Edit_btn_payment').addEventListener('click',function(e){
+                e.preventDefault();
+                var id =  document.getElementById('p_pid').value;
+                var type = document.getElementById('p_stype').value;
+                var name = document.getElementById('p_sname').value
+                var date =  document.getElementById('p_date').value;
+                var price =  document.getElementById('p_price').value;
+                var states =  document.getElementById('p_states').value;
+                fetch('../admin_staff_Backend/payments.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'paymentID': paymentID,
+                        'id' : id,
+                        'type' : type,
+                        'name' : name,
+                        'date' : date,
+                        'price' : price,
+                        'states' : states,
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    const cleanedText = text.trim().replace(/null$/, '');
+                    try {
+                        // const data = JSON.parse(text);
+                        const data = JSON.parse(cleanedText);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deletePayment(paymentID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/payments.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'paymentID': paymentID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+         function editSubPlan(subPlanID){
+            const queryString = new URLSearchParams({'subPlanID':subPlanID}).toString();
+            fetch(`../admin_staff_Backend/payments.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_subplan.html')
+                            .then(() => {
+                                document.getElementById('stype').value = data.Type;
+                                document.getElementById('sprice').value = data.Price;
+                                document.getElementById('susage').value = data.Usage;
+                                editsubplanDetails(subPlanID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editsubplanDetails(subPlanID){
+            document.getElementById('Edit_btn_subplan').addEventListener('click',function(e){
+                e.preventDefault();
+                var type = document.getElementById('stype').value;
+                var price =  document.getElementById('sprice').value;
+                var usage =  document.getElementById('susage').value;
+                fetch('../admin_staff_Backend/payments.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'subPlanID': subPlanID,
+                        'type' : type,
+                        'price' : price,
+                        'usage' : usage,
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+        // ---------------------------- Staff ---------------------------------------------------------------------
+
+        function staffDetails(){
+            fetch('../admin_staff_Backend/staff.php', {
+                method: 'GET'
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Network response was not ok ' + response.statusText);
+                }
+                return response.text();
+            })
+            .then(text => {
+                // console.log('Raw response text:', text);
+                try {
+                    const data = JSON.parse(text);
+                    window.originalAppointments = data;
+                    buildStaffTable(data, document.getElementById('Staff_tabel_body'));
+
+                    const searchButton = document.getElementById('searchButtonStaff');
+                    searchButton.addEventListener('click', function () {
+                        const query = document.getElementById('searchBarStaff').value.toLowerCase();
+                        const selectedColumns = Array.from(document.querySelectorAll('.filter-checkbox:checked')).map(cb => cb.value);
+                        if (selectedColumns.length === 0) {
+                            selectedColumns = ["Patient_ID", "Sub_Type", "Sub_name", "Date", "States"];
+                        }
+                        const filteredData = window.originalAppointments.filter(item =>
+                            selectedColumns.some(column =>
+                                item[column] && item[column].toString().toLowerCase().includes(query)
+                            )
+                        );
+                        buildStaffTable(filteredData, document.getElementById('Staff_tabel_body'));
+                    });
+                }catch (e) {
+                    console.error('Failed to parse JSON:', e);
+                }
+            })
+            .catch(error => {
+                console.error('Error:', error);
+            });
+        }
+        function buildStaffTable(data, Element) {
+            Element.innerHTML = '';
+            data.forEach(edit => {
+                var row = document.createElement('tr');
+                var fnameCell = document.createElement('td');
+                fnameCell.textContent = edit.Fisrt_name;
+                var lnameCell = document.createElement('td');
+                lnameCell.textContent = edit.Last_name;               
+                var emailCell = document.createElement('td');
+                emailCell.textContent = edit.Email;   
+                var ageCell = document.createElement('td');
+                ageCell.textContent = edit.Age;                          
+                var roleCell = document.createElement('td');
+                roleCell.textContent = edit.Role; 
+                var genderCell = document.createElement('td');
+                genderCell.textContent = edit.Gender; 
+                var phoneNumberCell = document.createElement('td');
+                phoneNumberCell.textContent = edit.Phone_Number;         
+                var streetnumCell = document.createElement('td');
+                streetnumCell.textContent = edit.Street_Number;          
+                var streetNamedCell = document.createElement('td');
+                streetNamedCell.textContent = edit.Street_Name;          
+                var cityCell = document.createElement('td');
+                cityCell.textContent = edit.City;
+                var passwordCell = document.createElement('td');
+                passwordCell.textContent = edit.Password; 
+
+                var btnCell = document.createElement('td');
+                
+                var btnContainer = document.createElement('div');
+                btnContainer.className = 'd-flex gap-2'; 
+
+                var editButton = document.createElement('button');
+                editButton.textContent = 'Edit';
+                editButton.className = 'btn btn-warning btn-sm';
+                editButton.id = edit.Staff_id;
+                editButton.onclick = function() {
+                    console.log("edit" + this.id);
+                };
+
+                var deleteButton = document.createElement('button');
+                deleteButton.textContent = 'Delete';
+                deleteButton.className = 'btn btn-danger btn-sm';
+                deleteButton.id = edit.Staff_id;
+                deleteButton.onclick = function() {
+                    console.log("delete" + this.id);
+                };
+
+                btnContainer.appendChild(editButton);
+                btnContainer.appendChild(deleteButton);
+
+                btnCell.appendChild(btnContainer);
+
+                row.appendChild(fnameCell);
+                row.appendChild(lnameCell);
+                row.appendChild(emailCell);
+                row.appendChild(ageCell);
+                row.appendChild(roleCell);
+                row.appendChild(genderCell);
+                row.appendChild(phoneNumberCell);
+                row.appendChild(streetnumCell);
+                row.appendChild(streetNamedCell);
+                row.appendChild(cityCell);
+                row.appendChild(passwordCell);
+                row.appendChild(btnCell);
+
+                Element.appendChild(row);
+            });
+        }
+
+        function editPatient(patientID){
+            const queryString = new URLSearchParams({'patientID':patientID}).toString();
+            fetch(`../admin_staff_Backend/patient.php?${queryString}`, {
+                    method: 'GET',
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data) {
+                            loadpopupPage('../admin_staff_Frontend/admin dashboard Components/edit_patient.html')
+                            .then(() => {
+                                document.getElementById('pa_fname').value = data.Fisrt_name;
+                                document.getElementById('pa_lname').value = data.Last_name;
+                                document.getElementById('pa_email').value = data.email;
+                                document.getElementById('pa_gender').value = data.Gender;
+                                document.getElementById('pa_pnumber').value = data.Phone_Number;
+                                document.getElementById('pa_snumber').value = data.Street_Number;
+                                document.getElementById('pa_sname').value = data.Street_Name;
+                                document.getElementById('pa_city').value = data.City;
+                                editPatientDetails(patientID);
+                            })
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+        function editPatientDetails(patientID){
+            document.getElementById('Edit_btn_patient').addEventListener('click',function(e){
+                e.preventDefault();
+                var fname =  document.getElementById('pa_fname').value;
+                var lname = document.getElementById('pa_lname').value;
+                var email = document.getElementById('pa_email').value
+                var gender =  document.getElementById('pa_gender').value;
+                var pnumber =  document.getElementById('pa_pnumber').value;
+                var snumber =  document.getElementById('pa_snumber').value;
+                var sname =  document.getElementById('pa_sname').value;
+                var city =  document.getElementById('pa_city').value;
+
+                fetch('../admin_staff_Backend/patient.php', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'patientID': patientID,
+                        'fname' : fname,
+                        'lname' : lname,
+                        'email' : email,
+                        'gender' : gender,
+                        'pnumber' : pnumber,
+                        'snumber' : snumber,
+                        'sname' : sname,
+                        'city' : city,
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'update') {
+                            alert('Successfully update');
+                        } else {
+                            console.log('Not added');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+            });
+        }
+
+        function deletePatient(patientID){
+            alert('are your suver');
+            fetch('../admin_staff_Backend/patient.php', {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/x-www-form-urlencoded'
+                    },
+                    body: new URLSearchParams({
+                        'patientID': patientID
+                    })
+                })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('Network response was not ok ' + response.statusText);
+                    }
+                    return response.text();
+                })
+                .then(text => {
+                    console.log('Raw response text:', text);
+                    try {
+                        const data = JSON.parse(text);
+                        if (data.states == 'delete') {
+                            alert('Successfully Delete');
+                        } else {
+                            console.log('Not Delete');
+                        }
+                    } catch (e) {
+                        console.error('Failed to parse JSON:', e);
+                    }
+                })
+                .catch(error => console.error('Error:', error));
+        }
+
+    </script>
+</body>
+</html>
