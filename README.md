@@ -78,7 +78,7 @@ The Eye Clinic Management System is a comprehensive web-based application design
    ```
 3. Set up the database:
    - Create a MySQL database.
-   - Import the `database.sql` file located in the `db` folder.
+   - Import the `eagel_eye_care.sql` file located in the `db` folder.
 
 4. Start the server:
    - Using XAMPP/WAMP, place the project folder in the `htdocs` directory.
@@ -131,3 +131,36 @@ We extend our gratitude to our university and faculty for their guidance and sup
 
 ## License
 This project is licensed under the Apache License 2.0 License - see the [LICENSE](./LICENSE) file for details.
+
+## Screenshots
+
+### Homepage
+![Homepage](assets/screenshots/home.png "Homepage of the Eye Clinic Management System")
+
+### Appointment Booking
+![Appointment Booking](assets/screenshots/appointment.png "Appointment Booking Page")
+
+### Patient Dashboard
+![Appointment Booking](assets/screenshots/patient_dashboard.png "Patient Dashboard Page")
+
+### Patient Login
+![Appointment Booking](assets/screenshots/login.png "Patient Login Page")
+
+### Payemnt
+![Appointment Booking](assets/screenshots/payment.png "Payemnt Page")
+
+### Doctor Dashboard
+![Appointment Booking](assets/screenshots/doctor_dashbord.png "Doctor Dashboard Page")
+
+### Staff Profile
+![Appointment Booking](assets/screenshots/staff_profile.png "Staff Profile Page")
+
+### Admin Login
+![Appointment Booking](assets/screenshots/admin_or_staff_login.png "Admin Login Page")
+
+### Admin Dashboard
+![Appointment Booking](assets/screenshots/admin_dashbord.png "Admin Dashboard Page")
+
+### Admin Appointment Dashboard
+![Appointment Booking](assets/screenshots/admin_appointments.png "Admin Appointment Dashboard Page")
+
