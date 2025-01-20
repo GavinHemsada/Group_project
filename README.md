@@ -90,9 +90,9 @@ The Eye Clinic Management System is a comprehensive web-based application design
 ---
 
 ## Group Members
-1. **[Member 1 AbeywardhanaHRK]** - Role: Frontend Development
-2. **[Member 2 Jayaruwan RASD]** - Role: Frontend Development
-3. **[Member 3 GDG Hemsanda]** - Role: Developed the back-end functionality, database integration, Managed payment gateway and email gateway integrations
+1. **[@AbeywardhanaHRK](https://github.com/AbeywardhanaHRK)** - Role: Frontend Development
+2. **[@dhanuddharajayaruwan](https://github.com/dhanuddharajayaruwan)** - Role: Frontend Development
+3. **[@GavinHemsada](https://github.com/GavinHemsada)** - Role: Developed the back-end functionality, database integration, Managed payment gateway and email gateway integrations
 
 ---
 
