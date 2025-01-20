@@ -1,4 +1,19 @@
 <?php
+/**
+ * Copyright 2025 GavinHemsada
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 include "../../Connection.php";
 $sub_payments = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM patinet_subscriptions"),MYSQLI_ASSOC);
 $payments = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM payment"),MYSQLI_ASSOC);
@@ -6,23 +21,6 @@ $sub_plane = mysqli_fetch_all(mysqli_query($con, "SELECT * FROM subscriptions"),
 if($_SERVER['REQUEST_METHOD'] === 'GET'){
     $paymentID =isset($_GET['paymentID'])?$_GET['paymentID']:null;
     $subPlanID = isset($_GET['subPlanID'])?$_GET['subPlanID']:null;
-    // if(!empty($paymentID)){
-    //     $spaymentForEdit = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM patinet_subscriptions WHERE Patient_Sub_ID='$paymentID'"));
-    //     echo json_encode($spaymentForEdit);
-    //     exit();
-    // }else{
-    //     if($sub_payments){
-    //         echo json_encode([$sub_payments,$payments,$sub_plane]);
-    //         exit();
-    //     }else{
-    //         echo json_encode(['states' => 'error']);
-    //     }
-    // }
-    // if(!empty($subPlanID)){
-    //     $sub = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM subscriptions WHERE Sub_ID='$subPlanID'"));
-    //     echo json_encode($sub);
-    //     exit();
-    // }
     if(!empty($paymentID)){
         $spaymentForEdit = mysqli_fetch_assoc(mysqli_query($con, "SELECT * FROM patinet_subscriptions WHERE Patient_Sub_ID='$paymentID'"));
         echo json_encode($spaymentForEdit);
@@ -42,8 +40,6 @@ if($_SERVER['REQUEST_METHOD'] === 'GET'){
 }
 if($_SERVER['REQUEST_METHOD'] === 'PUT'){
     parse_str(file_get_contents("php://input"), $_PUT);
-    // $paymentID =$_PUT['paymentID'];
-    // $subPlanID = $_PUT['subPlanID'];
     $paymentID = isset($_PUT['paymentID']) ? $_PUT['paymentID'] : null;
     $subPlanID = isset($_PUT['subPlanID']) ? $_PUT['subPlanID'] : null;
     if(!empty($paymentID)){

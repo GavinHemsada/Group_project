@@ -1,4 +1,19 @@
 <!DOCTYPE html>
+/**
+ * Copyright 2025 GavinHemsada
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at:
+ *
+ *     http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -401,46 +416,6 @@
                     console.error('Error in profiledetails:', error);
                 });
         }
-
-        // function paymentbtn(id,price_value){
-        //     document.getElementById(id).addEventListener('click', function() {
-        //         const price = document.getElementById(price_value).value;
-        //         fetch('../../../../Clinic Management System/User/Patient/patient_backend/dashboard Components/profile.php', {
-        //         method: 'POST',
-        //         body: new URLSearchParams({
-        //                 'fname' : fname,
-        //                 'lname' : lname,
-        //                 'email': email,
-        //                 'gender': gender,
-        //                 'phone' : phone,
-        //                 'snumber' : snum,
-        //                 'sname' : sname,
-        //                 'city' : city
-        //             })
-        //         })
-        //         .then(response => {
-        //             if (!response.ok) {
-        //                 throw new Error('Network response was not ok ' + response.statusText);
-        //             }
-        //             return response.text();
-        //         })
-        //         .then(text => {
-        //             console.log('Raw response text:', text);
-        //             try {
-        //                 const data = JSON.parse(text);
-        //                 if (data.status === 'success') {
-        //                     alert('succesfull added');
-        //                 }else{
-        //                 alert('cant added');
-        //                 }
-        //             } catch (e) {
-        //                 console.error('Failed to parse JSON:', e);
-        //             }
-        //         })
-        //         .catch(error => console.error('Error:', error));
-
-        //     })
-        // }
         
         function profile_edit(){
             document.querySelectorAll('.edit_btn').forEach(function(button) {

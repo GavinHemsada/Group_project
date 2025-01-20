@@ -1,145 +1,133 @@
-Eye Clinic Management System
-
-Project Overview
-
-The Eye Clinic Management System is a comprehensive solution designed to streamline the operations of an eye clinic. This university group project, developed by a team of three members, provides an efficient way for patients, doctors, staff, and administrators to interact with the system. The project integrates a payment gateway (PayPal), mail gateway (SMTP), and utilizes HTML, PHP, JavaScript, and Bootstrap 5 to provide a responsive and user-friendly interface. The system is divided into front-end and back-end modules to ensure scalability and maintainability.
-
-Features
-
-General Features:
-
-Responsive design using Bootstrap 5.
-
-Secure integration with PayPal for online payments.
-
-Email notifications and reminders via SMTP.
-
-Stakeholders:
-
-Patients
-
-Schedule and manage appointments.
-
-View prescriptions and medical records.
-
-Make online payments for consultations and services.
-
-Doctors
-
-Manage patient appointments.
-
-Access and update medical records.
-
-Generate prescriptions and reports.
-
-Staff
-
-Manage clinic operations and schedules.
-
-Handle patient queries and assist with appointments.
-
-Administrator
-
-Oversee all system operations.
-
-Manage user roles and permissions.
-
-Generate and view detailed reports and analytics.
-
-Technology Stack
-
-Front-End:
-
-HTML
-
-Bootstrap 5
-
-JavaScript
-
-Back-End:
-
-PHP
-
-MySQL (Database)
-
-Integrations:
-
-Payment Gateway: PayPal
-
-Mail Gateway: SMTP
-
-System Architecture
-
-The system is divided into two main parts:
-
-Front-End:
-
-Provides an intuitive interface for users.
-
-Ensures mobile and desktop compatibility through responsive design.
-
-Back-End:
-
-Handles data storage and retrieval using PHP and MySQL.
-
-Manages user authentication and authorization.
-
-Implements business logic and integrates external services.
-
-Installation Instructions
-
-Prerequisites:
-
-PHP 8.0 or higher
-
-MySQL 5.7 or higher
-
-A web server (e.g., Apache or Nginx)
-
-Composer for dependency management
-
-Steps:
-
-Clone the repository to your local machine.
-
-git clone <repository-url>
-
-Navigate to the project directory.
-
-cd eye-clinic-management-system
-
-Set up the database:
-
-Import the provided SQL file into your MySQL database.
-
-Configure environment settings:
-
-Update the config.php file with database credentials and API keys for PayPal and SMTP.
-
-Install dependencies:
-
-composer install
-
-Start the web server and access the system through your browser.
-
-Team Members
-
-Member 1: Responsible for front-end design and implementation.
-
-Member 2: Responsible for front-end design and implementation.
-
-Member 3: Developed the back-end functionality, database integration, Managed payment gateway and email gateway integrations.
-
-Usage
-
-Access the login page based on your role (Patient, Doctor, Staff, or Admin).
-
-Use the respective dashboard to access the features specific to your role.
-
-Patients can schedule appointments and make payments securely via PayPal.
-
-Doctors can view and update patient records and appointments.
-
-Staff members can manage clinic schedules and operations.
-
-Administrators can monitor system performance and generate reports.
+# Eye Clinic Management System
+
+## Project Overview
+The Eye Clinic Management System is a comprehensive web-based application designed to streamline and enhance the operations of an eye clinic. This system provides an efficient way to manage patient records, appointments, billing, and communication among stakeholders. The project includes both frontend and backend development to ensure a seamless user experience.
+
+### Project Stakeholders:
+1. **Patients**: Book appointments, receive notifications, and make payments online.
+2. **Doctors**: Manage appointments, view patient records, and provide consultations.
+3. **Staff**: Handle administrative tasks such as scheduling and record management.
+4. **Admin**: Oversee the entire system, manage users, and generate reports.
+
+---
+
+## Features
+
+### General Features:
+- User-friendly interface using **HTML**, **Bootstrap 5**, and **JavaScript**.
+- Secure backend built with **PHP**.
+- Payment gateway integration using **PayPal**.
+- Email notifications via **SMTP**.
+
+### Patient Features:
+- Account registration and login.
+- Online appointment booking.
+- Payment processing for services.
+- Email reminders for appointments.
+
+### Doctor Features:
+- View and manage scheduled appointments.
+- Access patient medical records.
+- Add consultation notes.
+
+### Staff Features:
+- Schedule and reschedule appointments.
+- Manage patient records and doctor schedules.
+- Support administrative operations.
+
+### Admin Features:
+- Manage users (patients, doctors, staff).
+- Generate clinic performance and financial reports.
+- Oversee all operations for quality assurance.
+
+---
+
+## Technology Stack
+
+### Frontend:
+- **HTML5**
+- **Bootstrap 5**
+- **JavaScript**
+
+### Backend:
+- **PHP**
+- **MySQL** (for database management)
+
+### Third-Party Integrations:
+- **PayPal** (Payment Gateway)
+- **SMTP** (Email Notifications)
+
+---
+
+## Setup Instructions
+
+### Prerequisites:
+- A web server (e.g., Apache or Nginx).
+- PHP 7.4 or higher.
+- MySQL database.
+- Composer (for managing PHP dependencies).
+
+### Installation Steps:
+1. Clone the repository:
+   ```bash
+   git clone <repository-url>
+   ```
+2. Navigate to the project directory:
+   ```bash
+   cd eye-clinic-management-system
+   ```
+3. Set up the database:
+   - Create a MySQL database.
+   - Import the `database.sql` file located in the `db` folder.
+
+4. Start the server:
+   - Using XAMPP/WAMP, place the project folder in the `htdocs` directory.
+   - Start Apache and MySQL services.
+
+5. Access the application:
+   - Open your web browser and navigate to `http://localhost/eye clinic management system` and `http://localhost/eye-clinic-management-system/admin`.
+
+---
+
+## Group Members
+1. **[Member 1 AbeywardhanaHRK]** - Role: Frontend Development
+2. **[Member 2 Jayaruwan RASD]** - Role: Frontend Development
+3. **[Member 3 GDG Hemsanda]** - Role: Developed the back-end functionality, database integration, Managed payment gateway and email gateway integrations
+
+---
+
+## Contribution Workflow
+1. Fork the repository.
+2. Create a new branch for your feature or bug fix:
+   ```bash
+   git checkout -b feature-name
+   ```
+3. Commit your changes with a clear message:
+   ```bash
+   git commit -m "Add feature description"
+   ```
+4. Push the branch to the repository:
+   ```bash
+   git push origin feature-name
+   ```
+5. Open a pull request for review.
+
+---
+
+## Future Enhancements
+- Integration of telemedicine consultations.
+- Advanced analytics and reporting.
+- Multilingual support for broader accessibility.
+
+---
+
+## License
+This project is for educational purposes only and is not intended for commercial use.
+
+---
+
+## Acknowledgments
+We extend our gratitude to our university and faculty for their guidance and support throughout this project.
+
+## License
+This project is licensed under the MIT License - see the [LICENSE](./LICENSE) file for details.
