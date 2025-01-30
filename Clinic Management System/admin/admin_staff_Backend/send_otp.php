@@ -30,12 +30,12 @@ $_SESSION['otp'] = $otp;
     $mail->Host = 'smtp.gmail.com';
     $mail->SMTPAuth = true;
     $mail->Port = 587;
-    $mail->Username = 'gavinhemsada@gmail.com';
-    $mail->Password = 'tlve xuxt hpeb texo';
+    $mail->Username = 'exampel@gmail.com';
+    $mail->Password = 'youer-password';
 
-    $mail->setFrom('gavinhemsada@gmail.com', 'Healing Hands');
+    $mail->setFrom('exampel@gmail.com', 'Healing Hands');
     $mail->addAddress($usermail);
-    $mail->addReplyTo('gavinhemsada@gmail.com', 'Information');
+    $mail->addReplyTo('exampel@gmail.com', 'Information');
 
     $mail->isHTML(true);
     $mail->Subject = "Your OTP code";
